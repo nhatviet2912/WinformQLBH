@@ -12,11 +12,9 @@ namespace QuanLyBanHang
             InitializeComponent();
         }
 
-        DTO_SanPham entity = new DTO_SanPham();
         BLL_SanPham sp = new BLL_SanPham();
         BLL_LoaiSanPham lsp = new BLL_LoaiSanPham();
-        bool addnew;
-        int Id = 0;
+        BLL_TonKho bLL_TonKho = new BLL_TonKho();
         void CloseHH()
         {
             comboBox_hh_tensp.Enabled = false;
@@ -65,15 +63,6 @@ namespace QuanLyBanHang
 
         }
 
-        void setButton (bool active)
-        {
-            button_hh_them.Enabled = !active;
-            button_hh_luu.Enabled = active;
-            button_hh_xoa.Enabled = active;
-            button_hh_sua.Enabled = active;
-            button_hh_huybo.Enabled = active;
-        }
-
         void Setnull()
         {
             comboBox_hh_masp.Text = "";
@@ -100,15 +89,10 @@ namespace QuanLyBanHang
 
         void Display()
         {
-            dataGridView_hh.DataSource = sp.GetData();
+            dataGridView_hh.DataSource = bLL_TonKho.GetData();
             if (dataGridView_hh.Columns["Id"] != null)
             {
                 dataGridView_hh.Columns["Id"].Visible = false;
-            }
-
-            if (dataGridView_hh.Columns["LoaiSanPhamId"] != null)
-            {
-                dataGridView_hh.Columns["LoaiSanPhamId"].Visible = false;
             }
         }
 
@@ -138,17 +122,12 @@ namespace QuanLyBanHang
             Setnull();
             //testbutton();
             CloseHH();
-            setButton(false);
         }
 
         private void dataGridView_hh_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             CloseHH();
-            button_hh_sua.Enabled = true;
-            button_hh_huybo.Enabled = true;
-            button_hh_xoa.Enabled = true;
             var row = dataGridView_hh.Rows[e.RowIndex];
-            Id = int.Parse(row.Cells[0].Value.ToString()!);
             try
             {
                 comboBox_hh_masp.Text = row.Cells[1].Value.ToString();
@@ -164,61 +143,6 @@ namespace QuanLyBanHang
             {
 
             }
-        }
-
-        private void button_hh_sua_Click(object sender, EventArgs e)
-        {
-            if (comboBox_hh_masp.Text == "")
-            {
-                MessageBox.Show("Vui lòng nhấp chọn bên dưới !", "Thông báo !");
-                return;
-            }
-            addnew = false;
-            OpenHH();
-            button_hh_luu.Enabled = true;
-            button_hh_huybo.Enabled = true;
-            button_hh_sua.Enabled = false;
-            button_hh_them.Enabled = false;
-            button_hh_xoa.Enabled = false;
-            this.comboBox_hh_tensp.Focus();
-        }
-
-        private void button_hh_luu_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!ValidateInput()) return;
-
-                entity.MaSanPham = comboBox_hh_masp.Text;
-                entity.TenSanPham = comboBox_hh_tensp.Text;
-                entity.LoaiSanPhamId = Convert.ToInt32(combobox_LSP.SelectedValue!);
-                entity.DonViTinh = textBox_dvt.Text;
-                entity.GiaBan = int.Parse(comboBox_hh_gb.Text);
-                entity.MoTa = textBox_mota.Text;
-                entity.ThuongHieu = textBox_ThuongHieu.Text;
-                entity.XuatXu = textBox_XuatXu.Text;
-                if (addnew == true)
-                {
-                    sp.AddData(entity);
-                }
-                else
-                {
-                    entity.Id = Id;
-                    sp.EditData(entity);
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Đã có lỗi xảy ra!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            Setnull();
-            CloseHH();
-            Display();
-            button_hh_xoa.Enabled = true;
-            button_hh_sua.Enabled = true;
-            button_hh_huybo.Enabled = false;
-            button_hh_them.Enabled = true;
-            button_hh_luu.Enabled = false;
         }
 
         private void comboBox_hh_slt_KeyPress(object sender, KeyPressEventArgs e)
@@ -264,89 +188,6 @@ namespace QuanLyBanHang
         {
             dataGridView_hh.DataSource = sp.Search(comboBox_timkiem.Text);
             CloseHH();
-            button_hh_them.Enabled = true;
-            button_hh_luu.Enabled = false;
-            button_hh_sua.Enabled = true;
-            button_hh_xoa.Enabled = true;
-            button_hh_huybo.Enabled = true;
-        }
-
-        private void button_nh_them_Click(object sender, EventArgs e)
-        {
-            addnew = true;
-            Setnull();
-            //AuToMaSP();
-            OpenHH();
-            button_hh_huybo.Enabled = true;
-            button_hh_luu.Enabled = true;
-            button_hh_sua.Enabled = false;
-            button_hh_them.Enabled = false;
-            button_hh_xoa.Enabled = false;
-            this.comboBox_hh_tensp.Focus();
-        }
-
-        private void button_hh_xoa_Click(object sender, EventArgs e)
-        {
-            entity.Id = Id;
-            sp.DeleteData(entity);
-            CloseHH();
-            Setnull();
-            Display();
-            //testbutton();
-            setButton(false);
-        }
-
-        private bool ValidateInput()
-        {
-            if (comboBox_hh_masp.Text == "")
-            {
-                MessageBox.Show("Lỗi mã sản phẩm !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (comboBox_hh_tensp.Text == "")
-            {
-                MessageBox.Show("Xin mời nhập lại tên sản phẩm !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (combobox_LSP.SelectedValue == null || Convert.ToInt32(combobox_LSP.SelectedValue) == 0)
-            {
-                MessageBox.Show("Vui lòng chọn loại sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (textBox_dvt.Text == "")
-            {
-                MessageBox.Show("Xin mời nhập lại đơn vị tính !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (comboBox_hh_gb.Text == "" || int.Parse(comboBox_hh_gb.Text) == 0)
-            {
-                MessageBox.Show("Xin mời nhập lại giá bán !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (textBox_ThuongHieu.Text == "")
-            {
-                MessageBox.Show("Xin mời nhập lại thương hiệu !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (textBox_XuatXu.Text == "")
-            {
-                MessageBox.Show("Xin mời nhập lại xuất xứ !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (textBox_mota.Text == "")
-            {
-                MessageBox.Show("Xin mời nhập lại mô tả", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            bool exitMasp = sp.ExitCode(comboBox_hh_masp.Text, Id);
-            if (exitMasp)
-            {
-                MessageBox.Show("Mã sản phẩm đã tồn tại! Vui lòng nhập mã khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            return true;
         }
 
         private void HangHoa_Load(object sender, EventArgs e)
@@ -356,7 +197,6 @@ namespace QuanLyBanHang
             Setnull();
             LoadDataLSP();
             Display();
-            setButton(false);
         }
     }
 }
