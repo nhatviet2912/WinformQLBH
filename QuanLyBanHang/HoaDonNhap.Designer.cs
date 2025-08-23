@@ -30,43 +30,32 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HangHoa));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HoaDonNhap));
             label_hh_masp = new Label();
             button_hh_huybo = new Button();
-            button_hh_sua = new Button();
             dataGridView_hh = new DataGridView();
             label_hh_tsp = new Label();
             label_hh_dvt = new Label();
             label_HH_NSX = new Label();
-            button_hh_luu = new Button();
             button_hh_tc = new Button();
-            comboBox_hh_tensp = new ComboBox();
-            comboBox_hh_gb = new ComboBox();
-            textBox_dvt = new ComboBox();
-            comboBox_hh_masp = new ComboBox();
+            comboBox_ngaynhap = new ComboBox();
+            comboBox_ncc = new ComboBox();
+            textBox_tongtien = new ComboBox();
+            comboBox_maphieu = new ComboBox();
             comboBox_timkiem = new ComboBox();
             label1 = new Label();
             button_timkiem = new Button();
             pictureBox_bh = new PictureBox();
-            button_hh_them = new Button();
-            button_hh_xoa = new Button();
-            label2 = new Label();
-            textBox_mota = new TextBox();
             label3 = new Label();
-            label4 = new Label();
             label5 = new Label();
-            textBox_ThuongHieu = new TextBox();
-            textBox_XuatXu = new TextBox();
-            combobox_LSP = new ComboBox();
-            MaSanPham = new DataGridViewTextBoxColumn();
-            TenSanPham = new DataGridViewTextBoxColumn();
-            TenLoai = new DataGridViewTextBoxColumn();
-            GiaBan = new DataGridViewTextBoxColumn();
-            ThuongHieu = new DataGridViewTextBoxColumn();
-            XuatXu = new DataGridViewTextBoxColumn();
-            DonViTinh = new DataGridViewTextBoxColumn();
-            MoTa = new DataGridViewTextBoxColumn();
-            NgayTao = new DataGridViewTextBoxColumn();
+            textBox_nhanvien = new TextBox();
+            textBox_ghichu = new TextBox();
+            MaPhieu = new DataGridViewTextBoxColumn();
+            NhaCungCap = new DataGridViewTextBoxColumn();
+            NhanVienNhap = new DataGridViewTextBoxColumn();
+            TongTien = new DataGridViewTextBoxColumn();
+            GhiChu = new DataGridViewTextBoxColumn();
+            NgayNhap = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView_hh).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox_bh).BeginInit();
             SuspendLayout();
@@ -80,9 +69,9 @@
             label_hh_masp.Location = new Point(5, 60);
             label_hh_masp.Margin = new Padding(4, 0, 4, 0);
             label_hh_masp.Name = "label_hh_masp";
-            label_hh_masp.Size = new Size(167, 29);
+            label_hh_masp.Size = new Size(122, 29);
             label_hh_masp.TabIndex = 40;
-            label_hh_masp.Text = "Mã sản phẩm";
+            label_hh_masp.Text = "Mã Phiếu";
             // 
             // button_hh_huybo
             // 
@@ -105,27 +94,6 @@
             button_hh_huybo.UseVisualStyleBackColor = false;
             button_hh_huybo.Click += button_hh_huybo_Click;
             // 
-            // button_hh_sua
-            // 
-            button_hh_sua.BackColor = Color.Transparent;
-            button_hh_sua.FlatAppearance.BorderColor = Color.Tan;
-            button_hh_sua.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            button_hh_sua.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            button_hh_sua.FlatStyle = FlatStyle.Flat;
-            button_hh_sua.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button_hh_sua.ForeColor = Color.Lime;
-            button_hh_sua.Image = Properties.Resources._48px_Crystal_Clear_app_package_settings;
-            button_hh_sua.ImageAlign = ContentAlignment.MiddleLeft;
-            button_hh_sua.Location = new Point(1172, 331);
-            button_hh_sua.Margin = new Padding(4, 5, 4, 5);
-            button_hh_sua.Name = "button_hh_sua";
-            button_hh_sua.Size = new Size(153, 72);
-            button_hh_sua.TabIndex = 13;
-            button_hh_sua.Text = "SỬA";
-            button_hh_sua.TextAlign = ContentAlignment.MiddleRight;
-            button_hh_sua.UseVisualStyleBackColor = false;
-            button_hh_sua.Click += button_hh_sua_Click;
-            // 
             // dataGridView_hh
             // 
             dataGridView_hh.AllowUserToOrderColumns = true;
@@ -138,7 +106,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView_hh.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView_hh.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_hh.Columns.AddRange(new DataGridViewColumn[] { MaSanPham, TenSanPham, TenLoai, GiaBan, ThuongHieu, XuatXu, DonViTinh, MoTa, NgayTao });
+            dataGridView_hh.Columns.AddRange(new DataGridViewColumn[] { MaPhieu, NhaCungCap, NhanVienNhap, TongTien, GhiChu, NgayNhap });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -165,12 +133,12 @@
             label_hh_tsp.BackColor = Color.Transparent;
             label_hh_tsp.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_hh_tsp.ForeColor = Color.Brown;
-            label_hh_tsp.Location = new Point(497, 63);
+            label_hh_tsp.Location = new Point(587, 63);
             label_hh_tsp.Margin = new Padding(4, 0, 4, 0);
             label_hh_tsp.Name = "label_hh_tsp";
-            label_hh_tsp.Size = new Size(178, 29);
+            label_hh_tsp.Size = new Size(142, 29);
             label_hh_tsp.TabIndex = 51;
-            label_hh_tsp.Text = "Tên sản phẩm";
+            label_hh_tsp.Text = "Ngày Nhập";
             // 
             // label_hh_dvt
             // 
@@ -178,12 +146,12 @@
             label_hh_dvt.BackColor = Color.Transparent;
             label_hh_dvt.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_hh_dvt.ForeColor = Color.Brown;
-            label_hh_dvt.Location = new Point(497, 145);
+            label_hh_dvt.Location = new Point(587, 143);
             label_hh_dvt.Margin = new Padding(4, 0, 4, 0);
             label_hh_dvt.Name = "label_hh_dvt";
-            label_hh_dvt.Size = new Size(135, 29);
+            label_hh_dvt.Size = new Size(124, 29);
             label_hh_dvt.TabIndex = 52;
-            label_hh_dvt.Text = "Đơn vị tính";
+            label_hh_dvt.Text = "Tổng tiền";
             // 
             // label_HH_NSX
             // 
@@ -191,33 +159,12 @@
             label_HH_NSX.BackColor = Color.Transparent;
             label_HH_NSX.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_HH_NSX.ForeColor = Color.Brown;
-            label_HH_NSX.Location = new Point(981, 68);
+            label_HH_NSX.Location = new Point(13, 218);
             label_HH_NSX.Margin = new Padding(4, 0, 4, 0);
             label_HH_NSX.Name = "label_HH_NSX";
-            label_HH_NSX.Size = new Size(103, 29);
+            label_HH_NSX.Size = new Size(182, 29);
             label_HH_NSX.TabIndex = 56;
-            label_HH_NSX.Text = "Giá bán";
-            // 
-            // button_hh_luu
-            // 
-            button_hh_luu.BackColor = Color.Transparent;
-            button_hh_luu.FlatAppearance.BorderColor = Color.Tan;
-            button_hh_luu.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            button_hh_luu.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            button_hh_luu.FlatStyle = FlatStyle.Flat;
-            button_hh_luu.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button_hh_luu.ForeColor = Color.Lime;
-            button_hh_luu.Image = Properties.Resources.Save_as_icon;
-            button_hh_luu.ImageAlign = ContentAlignment.MiddleLeft;
-            button_hh_luu.Location = new Point(1005, 331);
-            button_hh_luu.Margin = new Padding(4, 5, 4, 5);
-            button_hh_luu.Name = "button_hh_luu";
-            button_hh_luu.Size = new Size(159, 72);
-            button_hh_luu.TabIndex = 12;
-            button_hh_luu.Text = "LƯU";
-            button_hh_luu.TextAlign = ContentAlignment.MiddleRight;
-            button_hh_luu.UseVisualStyleBackColor = false;
-            button_hh_luu.Click += button_hh_luu_Click;
+            label_HH_NSX.Text = "Nhà Cung Cấp";
             // 
             // button_hh_tc
             // 
@@ -238,69 +185,69 @@
             button_hh_tc.UseVisualStyleBackColor = false;
             button_hh_tc.Click += button_hh_tc_Click_1;
             // 
-            // comboBox_hh_tensp
+            // comboBox_ngaynhap
             // 
-            comboBox_hh_tensp.BackColor = Color.White;
-            comboBox_hh_tensp.DropDownStyle = ComboBoxStyle.Simple;
-            comboBox_hh_tensp.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            comboBox_hh_tensp.ForeColor = Color.Blue;
-            comboBox_hh_tensp.FormattingEnabled = true;
-            comboBox_hh_tensp.IntegralHeight = false;
-            comboBox_hh_tensp.ItemHeight = 29;
-            comboBox_hh_tensp.Location = new Point(701, 63);
-            comboBox_hh_tensp.Margin = new Padding(4, 5, 4, 5);
-            comboBox_hh_tensp.Name = "comboBox_hh_tensp";
-            comboBox_hh_tensp.Size = new Size(245, 37);
-            comboBox_hh_tensp.TabIndex = 2;
+            comboBox_ngaynhap.BackColor = Color.White;
+            comboBox_ngaynhap.DropDownStyle = ComboBoxStyle.Simple;
+            comboBox_ngaynhap.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            comboBox_ngaynhap.ForeColor = Color.Blue;
+            comboBox_ngaynhap.FormattingEnabled = true;
+            comboBox_ngaynhap.IntegralHeight = false;
+            comboBox_ngaynhap.ItemHeight = 29;
+            comboBox_ngaynhap.Location = new Point(835, 63);
+            comboBox_ngaynhap.Margin = new Padding(4, 5, 4, 5);
+            comboBox_ngaynhap.Name = "comboBox_ngaynhap";
+            comboBox_ngaynhap.Size = new Size(245, 37);
+            comboBox_ngaynhap.TabIndex = 2;
             // 
-            // comboBox_hh_gb
+            // comboBox_ncc
             // 
-            comboBox_hh_gb.BackColor = Color.White;
-            comboBox_hh_gb.DropDownStyle = ComboBoxStyle.Simple;
-            comboBox_hh_gb.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            comboBox_hh_gb.ForeColor = Color.Blue;
-            comboBox_hh_gb.FormattingEnabled = true;
-            comboBox_hh_gb.IntegralHeight = false;
-            comboBox_hh_gb.ItemHeight = 29;
-            comboBox_hh_gb.Location = new Point(1115, 57);
-            comboBox_hh_gb.Margin = new Padding(4, 5, 4, 5);
-            comboBox_hh_gb.Name = "comboBox_hh_gb";
-            comboBox_hh_gb.Size = new Size(182, 37);
-            comboBox_hh_gb.TabIndex = 3;
-            comboBox_hh_gb.KeyPress += comboBox_hh_gb_KeyPress;
+            comboBox_ncc.BackColor = Color.White;
+            comboBox_ncc.DropDownStyle = ComboBoxStyle.Simple;
+            comboBox_ncc.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            comboBox_ncc.ForeColor = Color.Blue;
+            comboBox_ncc.FormattingEnabled = true;
+            comboBox_ncc.IntegralHeight = false;
+            comboBox_ncc.ItemHeight = 29;
+            comboBox_ncc.Location = new Point(247, 218);
+            comboBox_ncc.Margin = new Padding(4, 5, 4, 5);
+            comboBox_ncc.Name = "comboBox_ncc";
+            comboBox_ncc.Size = new Size(245, 37);
+            comboBox_ncc.TabIndex = 3;
+            comboBox_ncc.KeyPress += comboBox_hh_gb_KeyPress;
             // 
-            // textBox_dvt
+            // textBox_tongtien
             // 
-            textBox_dvt.BackColor = Color.White;
-            textBox_dvt.DropDownStyle = ComboBoxStyle.Simple;
-            textBox_dvt.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox_dvt.ForeColor = Color.Blue;
-            textBox_dvt.FormattingEnabled = true;
-            textBox_dvt.IntegralHeight = false;
-            textBox_dvt.ItemHeight = 29;
-            textBox_dvt.Location = new Point(701, 149);
-            textBox_dvt.Margin = new Padding(4, 5, 4, 5);
-            textBox_dvt.Name = "textBox_dvt";
-            textBox_dvt.Size = new Size(245, 37);
-            textBox_dvt.TabIndex = 5;
+            textBox_tongtien.BackColor = Color.White;
+            textBox_tongtien.DropDownStyle = ComboBoxStyle.Simple;
+            textBox_tongtien.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBox_tongtien.ForeColor = Color.Blue;
+            textBox_tongtien.FormattingEnabled = true;
+            textBox_tongtien.IntegralHeight = false;
+            textBox_tongtien.ItemHeight = 29;
+            textBox_tongtien.Location = new Point(835, 145);
+            textBox_tongtien.Margin = new Padding(4, 5, 4, 5);
+            textBox_tongtien.Name = "textBox_tongtien";
+            textBox_tongtien.Size = new Size(245, 37);
+            textBox_tongtien.TabIndex = 5;
             // 
-            // comboBox_hh_masp
+            // comboBox_maphieu
             // 
-            comboBox_hh_masp.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox_hh_masp.AutoCompleteSource = AutoCompleteSource.ListItems;
-            comboBox_hh_masp.BackColor = Color.White;
-            comboBox_hh_masp.DropDownStyle = ComboBoxStyle.Simple;
-            comboBox_hh_masp.FlatStyle = FlatStyle.Flat;
-            comboBox_hh_masp.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            comboBox_hh_masp.ForeColor = Color.Blue;
-            comboBox_hh_masp.FormattingEnabled = true;
-            comboBox_hh_masp.IntegralHeight = false;
-            comboBox_hh_masp.ItemHeight = 29;
-            comboBox_hh_masp.Location = new Point(205, 60);
-            comboBox_hh_masp.Margin = new Padding(4, 5, 4, 5);
-            comboBox_hh_masp.Name = "comboBox_hh_masp";
-            comboBox_hh_masp.Size = new Size(245, 37);
-            comboBox_hh_masp.TabIndex = 1;
+            comboBox_maphieu.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox_maphieu.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comboBox_maphieu.BackColor = Color.White;
+            comboBox_maphieu.DropDownStyle = ComboBoxStyle.Simple;
+            comboBox_maphieu.FlatStyle = FlatStyle.Flat;
+            comboBox_maphieu.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            comboBox_maphieu.ForeColor = Color.Blue;
+            comboBox_maphieu.FormattingEnabled = true;
+            comboBox_maphieu.IntegralHeight = false;
+            comboBox_maphieu.ItemHeight = 29;
+            comboBox_maphieu.Location = new Point(247, 63);
+            comboBox_maphieu.Margin = new Padding(4, 5, 4, 5);
+            comboBox_maphieu.Name = "comboBox_maphieu";
+            comboBox_maphieu.Size = new Size(245, 37);
+            comboBox_maphieu.TabIndex = 1;
             // 
             // comboBox_timkiem
             // 
@@ -361,95 +308,17 @@
             pictureBox_bh.TabIndex = 75;
             pictureBox_bh.TabStop = false;
             // 
-            // button_hh_them
-            // 
-            button_hh_them.BackColor = Color.Transparent;
-            button_hh_them.Cursor = Cursors.Hand;
-            button_hh_them.FlatAppearance.BorderColor = Color.Tan;
-            button_hh_them.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            button_hh_them.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            button_hh_them.FlatStyle = FlatStyle.Flat;
-            button_hh_them.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button_hh_them.ForeColor = Color.Lime;
-            button_hh_them.Image = Properties.Resources._48px_Crystal_Clear_action_db_add;
-            button_hh_them.ImageAlign = ContentAlignment.MiddleLeft;
-            button_hh_them.Location = new Point(835, 331);
-            button_hh_them.Margin = new Padding(4, 5, 4, 5);
-            button_hh_them.Name = "button_hh_them";
-            button_hh_them.Size = new Size(163, 72);
-            button_hh_them.TabIndex = 11;
-            button_hh_them.Text = "THÊM";
-            button_hh_them.TextAlign = ContentAlignment.MiddleRight;
-            button_hh_them.UseVisualStyleBackColor = false;
-            button_hh_them.Click += button_nh_them_Click;
-            // 
-            // button_hh_xoa
-            // 
-            button_hh_xoa.BackColor = Color.Transparent;
-            button_hh_xoa.Cursor = Cursors.Hand;
-            button_hh_xoa.FlatAppearance.BorderColor = Color.Tan;
-            button_hh_xoa.FlatAppearance.MouseDownBackColor = Color.Transparent;
-            button_hh_xoa.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            button_hh_xoa.FlatStyle = FlatStyle.Flat;
-            button_hh_xoa.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button_hh_xoa.ForeColor = Color.Lime;
-            button_hh_xoa.Image = Properties.Resources._1439855765_1_04;
-            button_hh_xoa.ImageAlign = ContentAlignment.MiddleLeft;
-            button_hh_xoa.Location = new Point(1333, 331);
-            button_hh_xoa.Margin = new Padding(4, 5, 4, 5);
-            button_hh_xoa.Name = "button_hh_xoa";
-            button_hh_xoa.Size = new Size(152, 72);
-            button_hh_xoa.TabIndex = 14;
-            button_hh_xoa.Text = "XÓA";
-            button_hh_xoa.TextAlign = ContentAlignment.MiddleRight;
-            button_hh_xoa.UseVisualStyleBackColor = false;
-            button_hh_xoa.Click += button_hh_xoa_Click;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            label2.ForeColor = Color.Brown;
-            label2.Location = new Point(12, 224);
-            label2.Name = "label2";
-            label2.Size = new Size(77, 29);
-            label2.TabIndex = 80;
-            label2.Text = "Mô tả";
-            // 
-            // textBox_mota
-            // 
-            textBox_mota.BackColor = Color.White;
-            textBox_mota.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            textBox_mota.ForeColor = Color.Blue;
-            textBox_mota.Location = new Point(205, 224);
-            textBox_mota.Name = "textBox_mota";
-            textBox_mota.Size = new Size(245, 34);
-            textBox_mota.TabIndex = 7;
-            // 
             // label3
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
             label3.ForeColor = Color.Brown;
-            label3.Location = new Point(12, 145);
+            label3.Location = new Point(12, 140);
             label3.Name = "label3";
-            label3.Size = new Size(182, 29);
+            label3.Size = new Size(202, 29);
             label3.TabIndex = 82;
-            label3.Text = "Loại sản phẩm";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            label4.ForeColor = Color.Brown;
-            label4.Location = new Point(497, 230);
-            label4.Name = "label4";
-            label4.Size = new Size(159, 29);
-            label4.TabIndex = 83;
-            label4.Text = "Thương hiệu";
+            label3.Text = "Nhân Viên Nhập";
             // 
             // label5
             // 
@@ -457,161 +326,115 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
             label5.ForeColor = Color.Brown;
-            label5.Location = new Point(981, 145);
+            label5.Location = new Point(587, 223);
             label5.Name = "label5";
-            label5.Size = new Size(99, 29);
+            label5.Size = new Size(106, 29);
             label5.TabIndex = 84;
-            label5.Text = "Xuất xứ";
+            label5.Text = "Ghi Chú";
             // 
-            // textBox_ThuongHieu
+            // textBox_nhanvien
             // 
-            textBox_ThuongHieu.BackColor = Color.White;
-            textBox_ThuongHieu.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            textBox_ThuongHieu.ForeColor = Color.Blue;
-            textBox_ThuongHieu.Location = new Point(701, 230);
-            textBox_ThuongHieu.Name = "textBox_ThuongHieu";
-            textBox_ThuongHieu.Size = new Size(245, 34);
-            textBox_ThuongHieu.TabIndex = 8;
+            textBox_nhanvien.BackColor = Color.White;
+            textBox_nhanvien.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
+            textBox_nhanvien.ForeColor = Color.Blue;
+            textBox_nhanvien.Location = new Point(247, 137);
+            textBox_nhanvien.Name = "textBox_nhanvien";
+            textBox_nhanvien.Size = new Size(245, 34);
+            textBox_nhanvien.TabIndex = 8;
             // 
-            // textBox_XuatXu
+            // textBox_ghichu
             // 
-            textBox_XuatXu.BackColor = Color.White;
-            textBox_XuatXu.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            textBox_XuatXu.ForeColor = Color.Blue;
-            textBox_XuatXu.Location = new Point(1115, 144);
-            textBox_XuatXu.Name = "textBox_XuatXu";
-            textBox_XuatXu.Size = new Size(182, 34);
-            textBox_XuatXu.TabIndex = 6;
+            textBox_ghichu.BackColor = Color.White;
+            textBox_ghichu.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
+            textBox_ghichu.ForeColor = Color.Blue;
+            textBox_ghichu.Location = new Point(835, 221);
+            textBox_ghichu.Name = "textBox_ghichu";
+            textBox_ghichu.Size = new Size(245, 34);
+            textBox_ghichu.TabIndex = 6;
             // 
-            // combobox_LSP
+            // MaPhieu
             // 
-            combobox_LSP.BackColor = Color.White;
-            combobox_LSP.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
-            combobox_LSP.ForeColor = Color.Blue;
-            combobox_LSP.FormattingEnabled = true;
-            combobox_LSP.Location = new Point(205, 149);
-            combobox_LSP.Name = "combobox_LSP";
-            combobox_LSP.Size = new Size(245, 37);
-            combobox_LSP.TabIndex = 4;
+            MaPhieu.DataPropertyName = "MaPhieu";
+            MaPhieu.HeaderText = "Mã Phiếu";
+            MaPhieu.MinimumWidth = 6;
+            MaPhieu.Name = "MaPhieu";
+            MaPhieu.ReadOnly = true;
+            MaPhieu.Width = 200;
             // 
-            // MaSanPham
+            // NhaCungCap
             // 
-            MaSanPham.DataPropertyName = "MaSanPham";
-            MaSanPham.HeaderText = "Mã Sản Phẩm";
-            MaSanPham.MinimumWidth = 6;
-            MaSanPham.Name = "MaSanPham";
-            MaSanPham.ReadOnly = true;
-            MaSanPham.Width = 200;
+            NhaCungCap.DataPropertyName = "NhaCungCap";
+            NhaCungCap.HeaderText = "Nhà Cung Cấp";
+            NhaCungCap.MinimumWidth = 6;
+            NhaCungCap.Name = "NhaCungCap";
+            NhaCungCap.ReadOnly = true;
+            NhaCungCap.Width = 300;
             // 
-            // TenSanPham
+            // NhanVienNhap
             // 
-            TenSanPham.DataPropertyName = "TenSanPham";
-            TenSanPham.HeaderText = "Tên Sản Phẩm";
-            TenSanPham.MinimumWidth = 6;
-            TenSanPham.Name = "TenSanPham";
-            TenSanPham.ReadOnly = true;
-            TenSanPham.Width = 200;
+            NhanVienNhap.DataPropertyName = "NhanVienNhap";
+            NhanVienNhap.HeaderText = "Nhân Viên Nhập";
+            NhanVienNhap.MinimumWidth = 6;
+            NhanVienNhap.Name = "NhanVienNhap";
+            NhanVienNhap.ReadOnly = true;
+            NhanVienNhap.Width = 300;
             // 
-            // TenLoai
+            // TongTien
             // 
-            TenLoai.DataPropertyName = "LoaiSanPhamTen";
-            TenLoai.HeaderText = "Tên Loại";
-            TenLoai.MinimumWidth = 6;
-            TenLoai.Name = "TenLoai";
-            TenLoai.ReadOnly = true;
-            TenLoai.Width = 200;
+            TongTien.DataPropertyName = "TongTien";
+            TongTien.HeaderText = "Tổng Tiền";
+            TongTien.MinimumWidth = 6;
+            TongTien.Name = "TongTien";
+            TongTien.ReadOnly = true;
+            TongTien.Width = 300;
             // 
-            // GiaBan
+            // GhiChu
             // 
-            GiaBan.DataPropertyName = "GiaBan";
-            GiaBan.HeaderText = "Giá Bán";
-            GiaBan.MinimumWidth = 6;
-            GiaBan.Name = "GiaBan";
-            GiaBan.ReadOnly = true;
-            GiaBan.Width = 200;
+            GhiChu.DataPropertyName = "GhiChu";
+            GhiChu.HeaderText = "Ghi Chú";
+            GhiChu.MinimumWidth = 6;
+            GhiChu.Name = "GhiChu";
+            GhiChu.ReadOnly = true;
+            GhiChu.Width = 300;
             // 
-            // ThuongHieu
+            // NgayNhap
             // 
-            ThuongHieu.DataPropertyName = "ThuongHieu";
-            ThuongHieu.HeaderText = "Thương Hiệu";
-            ThuongHieu.MinimumWidth = 6;
-            ThuongHieu.Name = "ThuongHieu";
-            ThuongHieu.ReadOnly = true;
-            ThuongHieu.Width = 200;
+            NgayNhap.DataPropertyName = "NgayNhap";
+            NgayNhap.HeaderText = "Ngày Nhập";
+            NgayNhap.MinimumWidth = 6;
+            NgayNhap.Name = "NgayNhap";
+            NgayNhap.ReadOnly = true;
+            NgayNhap.Width = 200;
             // 
-            // XuatXu
-            // 
-            XuatXu.DataPropertyName = "XuatXu";
-            XuatXu.HeaderText = "Xuất Xứ";
-            XuatXu.MinimumWidth = 6;
-            XuatXu.Name = "XuatXu";
-            XuatXu.ReadOnly = true;
-            XuatXu.Width = 200;
-            // 
-            // DonViTinh
-            // 
-            DonViTinh.DataPropertyName = "DonViTinh";
-            DonViTinh.HeaderText = "Đơn Vị Tính";
-            DonViTinh.MinimumWidth = 6;
-            DonViTinh.Name = "DonViTinh";
-            DonViTinh.ReadOnly = true;
-            DonViTinh.Width = 200;
-            // 
-            // MoTa
-            // 
-            MoTa.DataPropertyName = "MoTa";
-            MoTa.HeaderText = "Mô Tả";
-            MoTa.MinimumWidth = 6;
-            MoTa.Name = "MoTa";
-            MoTa.ReadOnly = true;
-            MoTa.Width = 200;
-            // 
-            // NgayTao
-            // 
-            NgayTao.DataPropertyName = "NgayTao";
-            NgayTao.HeaderText = "Ngày Tạo";
-            NgayTao.MinimumWidth = 6;
-            NgayTao.Name = "NgayTao";
-            NgayTao.ReadOnly = true;
-            NgayTao.Width = 200;
-            // 
-            // HangHoa
+            // HoaDonNhap
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.gray;
             ClientSize = new Size(1796, 1055);
-            Controls.Add(combobox_LSP);
-            Controls.Add(textBox_XuatXu);
-            Controls.Add(textBox_ThuongHieu);
+            Controls.Add(textBox_ghichu);
+            Controls.Add(textBox_nhanvien);
             Controls.Add(label5);
-            Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(textBox_mota);
-            Controls.Add(label2);
-            Controls.Add(button_hh_xoa);
-            Controls.Add(button_hh_them);
             Controls.Add(pictureBox_bh);
             Controls.Add(button_timkiem);
             Controls.Add(label1);
             Controls.Add(comboBox_timkiem);
-            Controls.Add(comboBox_hh_masp);
-            Controls.Add(textBox_dvt);
-            Controls.Add(comboBox_hh_gb);
-            Controls.Add(comboBox_hh_tensp);
+            Controls.Add(comboBox_maphieu);
+            Controls.Add(textBox_tongtien);
+            Controls.Add(comboBox_ncc);
+            Controls.Add(comboBox_ngaynhap);
             Controls.Add(button_hh_tc);
-            Controls.Add(button_hh_luu);
             Controls.Add(label_HH_NSX);
             Controls.Add(label_hh_dvt);
             Controls.Add(label_hh_tsp);
             Controls.Add(label_hh_masp);
             Controls.Add(button_hh_huybo);
-            Controls.Add(button_hh_sua);
             Controls.Add(dataGridView_hh);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 5, 4, 5);
-            Name = "HangHoa";
-            Text = "HÀNG HÓA";
+            Name = "HoaDonNhap";
+            Text = "Hóa Đơn Nhập";
             Load += HangHoa_Load;
             Click += button_hh_huybo_Click;
             ((System.ComponentModel.ISupportInitialize)dataGridView_hh).EndInit();
@@ -625,39 +448,28 @@
 
         private System.Windows.Forms.Label label_hh_masp;
         private System.Windows.Forms.Button button_hh_huybo;
-        private System.Windows.Forms.Button button_hh_sua;
         private System.Windows.Forms.DataGridView dataGridView_hh;
         private System.Windows.Forms.Label label_hh_tsp;
         private System.Windows.Forms.Label label_hh_dvt;
         private System.Windows.Forms.Label label_HH_NSX;
-        private System.Windows.Forms.Button button_hh_luu;
         private System.Windows.Forms.Button button_hh_tc;
-        private System.Windows.Forms.ComboBox comboBox_hh_tensp;
-        private System.Windows.Forms.ComboBox comboBox_hh_gb;
-        private System.Windows.Forms.ComboBox textBox_dvt;
-        private System.Windows.Forms.ComboBox comboBox_hh_masp;
+        private System.Windows.Forms.ComboBox comboBox_ngaynhap;
+        private System.Windows.Forms.ComboBox comboBox_ncc;
+        private System.Windows.Forms.ComboBox textBox_tongtien;
+        private System.Windows.Forms.ComboBox comboBox_maphieu;
         private System.Windows.Forms.ComboBox comboBox_timkiem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_timkiem;
         private System.Windows.Forms.PictureBox pictureBox_bh;
-        private System.Windows.Forms.Button button_hh_them;
-        private System.Windows.Forms.Button button_hh_xoa;
-        private Label label2;
-        private TextBox textBox_mota;
         private Label label3;
-        private Label label4;
         private Label label5;
-        private TextBox textBox_ThuongHieu;
-        private TextBox textBox_XuatXu;
-        private ComboBox combobox_LSP;
-        private DataGridViewTextBoxColumn MaSanPham;
-        private DataGridViewTextBoxColumn TenSanPham;
-        private DataGridViewTextBoxColumn TenLoai;
-        private DataGridViewTextBoxColumn GiaBan;
-        private DataGridViewTextBoxColumn ThuongHieu;
-        private DataGridViewTextBoxColumn XuatXu;
-        private DataGridViewTextBoxColumn DonViTinh;
-        private DataGridViewTextBoxColumn MoTa;
-        private DataGridViewTextBoxColumn NgayTao;
+        private TextBox textBox_nhanvien;
+        private TextBox textBox_ghichu;
+        private DataGridViewTextBoxColumn MaPhieu;
+        private DataGridViewTextBoxColumn NhaCungCap;
+        private DataGridViewTextBoxColumn NhanVienNhap;
+        private DataGridViewTextBoxColumn TongTien;
+        private DataGridViewTextBoxColumn GhiChu;
+        private DataGridViewTextBoxColumn NgayNhap;
     }
 }

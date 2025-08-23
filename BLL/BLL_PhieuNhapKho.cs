@@ -11,25 +11,19 @@ namespace BLL
         {
             bus.AddData(ex);
         }
-        //  SỬA DỮ LIỆU
-        public void EditData(DTO_PhieuNhapKho ex)
-        {
-            bus.EditData(ex);
-        }
-        //  XÓA DỮ LIỆU
-        public void DeleteData(DTO_PhieuNhapKho ex)
-        {
-            bus.DeleteData(ex);
-        }
-        //  LẤY DỮ LIỆU
         public DataTable GetData()
         {
             return bus.GetData();
         }
 
-        public bool ExitMaCode (string maCode)
+        public DataTable GetDetailData(string Id)
         {
-            return bus.ExitMaCode(maCode);
+            return bus.GetDetailData(Id);
+        }
+
+        public DataTable Search (string condition)
+        {
+            return bus.SearchKH(condition);
         }
 
         public string GetMaCodeAuto() {

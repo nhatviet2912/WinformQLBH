@@ -447,7 +447,6 @@ namespace QuanLyBanHang
                     phieuNhapKhoEntity.TongTien = tongcong;
                     phieuNhapKhoEntity.GhiChu = textbox_ghichu.Text;
                     phieuNhapKhoEntity.chiTietPhieuNhaps = chiTietPhieuNhaps;
-                    phieuNhap.AddData(phieuNhapKhoEntity);
 
                     MessageBox.Show("Lưu hóa đơn thành công !");
                     button_nh_thanhtoan.Enabled = false;

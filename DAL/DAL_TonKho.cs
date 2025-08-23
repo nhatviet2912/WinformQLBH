@@ -23,7 +23,8 @@ namespace DAL
                     SanPham.ThuongHieu, 
                     SanPham.XuatXu, 
                     LoaiSanPham.TenLoai AS LoaiSanPhamTen,
-                    TonKho.SoLuong AS SoLuong
+                    TonKho.SoLuong AS SoLuong,
+                    SanPham.LoaiSanPhamId
                 FROM TonKho
                 INNER JOIN SanPham ON TonKho.SanPhamId = SanPham.Id
                 INNER JOIN LoaiSanPham ON SanPham.LoaiSanPhamId = LoaiSanPham.Id
@@ -47,7 +48,6 @@ namespace DAL
                 var cmd = connection.CreateCommand();
                 cmd.CommandText = @"
                 SELECT 
-                    SanPham.Id AS Id, 
                     SanPham.MaSanPham, 
                     SanPham.TenSanPham, 
                     SanPham.MoTa AS MoTa, 
@@ -55,12 +55,13 @@ namespace DAL
                     SanPham.DonViTinh, 
                     SanPham.ThuongHieu, 
                     SanPham.XuatXu, 
-                    SanPham.NgayTao,
-                    SanPham.LoaiSanPhamId,
-                    LoaiSanPham.TenLoai AS LoaiSanPhamTen
-                FROM SanPham
-                LEFT JOIN LoaiSanPham ON SanPham.LoaiSanPhamId = LoaiSanPham.Id
-                WHERE SanPham.TrangThai = 1 AND TenSanPham LIKE @kw";
+                    LoaiSanPham.TenLoai AS LoaiSanPhamTen,
+                    TonKho.SoLuong AS SoLuong,
+                    SanPham.LoaiSanPhamId
+                FROM TonKho
+                INNER JOIN SanPham ON TonKho.SanPhamId = SanPham.Id
+                INNER JOIN LoaiSanPham ON SanPham.LoaiSanPhamId = LoaiSanPham.Id
+                WHERE SanPham.TrangThai = 1 AND (TenSanPham LIKE @kw OR MaSanPham LIKE @kw)";
                 cmd.Parameters.AddWithValue("@kw", "%" + keyword + "%");
 
                 using (var reader = cmd.ExecuteReader())

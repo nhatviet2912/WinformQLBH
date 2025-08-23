@@ -79,32 +79,6 @@ namespace DAL
             }
         }
 
-        // Sửa dữ liệu
-        public void EditData(DTO_PhieuNhapKho ex)
-        {
-            using (var connection = DatabaseHelper.GetConnection())
-            {
-                connection.Open();
-                var cmd = connection.CreateCommand();
-                cmd.CommandText = "UPDATE PhieuNhapKho SET TenPhieuNhapKho=@ten, DiaChi=@diachi, DienThoai=@dt WHERE Id=@id";
-                cmd.Parameters.AddWithValue("@id", ex.Id);
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        // Xóa dữ liệu
-        public void DeleteData(DTO_PhieuNhapKho ex)
-        {
-            using (var connection = DatabaseHelper.GetConnection())
-            {
-                connection.Open();
-                var cmd = connection.CreateCommand();
-                cmd.CommandText = "DELETE FROM PhieuNhapKho WHERE Id=@id";
-                cmd.Parameters.AddWithValue("@id", ex.Id);
-                cmd.ExecuteNonQuery();
-            }
-        }
-
         // Lấy dữ liệu (có thể kèm điều kiện)
         public DataTable GetData()
         {
@@ -115,19 +89,65 @@ namespace DAL
                 var cmd = connection.CreateCommand();
                 cmd.CommandText = @"
                     SELECT 
-                        Id, 
-                        TenPhieuNhapKho, 
-                        DiaChi, 
-                        DienThoai, 
-                        MaCode, 
-                        Email, 
-                        CASE GioiTinh
-                            WHEN 1 THEN 'Nam'
-                            WHEN 2 THEN 'Nữ'
-                            WHEN 3 THEN 'Khác'
-                            ELSE ''
-                        END AS GioiTinh
-                    FROM PhieuNhapKho";
+    PhieuNhapKho.Id AS PhieuNhapId, 
+    PhieuNhapKho.MaPhieu, 
+    PhieuNhapKho.NgayNhap, 
+    PhieuNhapKho.NhaCungCap, 
+    PhieuNhapKho.NhanVienNhap, 
+    PhieuNhapKho.TongTien,
+    PhieuNhapKho.GhiChu
+FROM PhieuNhapKho";
+
+                dt.Columns.Add("PhieuNhapId", typeof(int));
+                dt.Columns.Add("MaPhieu", typeof(string));
+                dt.Columns.Add("NgayNhap", typeof(DateTime));
+                dt.Columns.Add("NhaCungCap", typeof(string));
+                dt.Columns.Add("NhanVienNhap", typeof(string));
+                dt.Columns.Add("TongTien", typeof(decimal));
+                dt.Columns.Add("GhiChu", typeof(string));
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        dt.Rows.Add(
+                            reader["PhieuNhapId"],
+                            reader["MaPhieu"],
+                            reader["NgayNhap"],
+                            reader["NhaCungCap"],
+                            reader["NhanVienNhap"],
+                            reader["TongTien"],
+                            reader["GhiChu"]
+                        );
+                    }
+                }
+            }
+            return dt;
+        }
+
+        // Lấy dữ liệu (có thể kèm điều kiện)
+        public DataTable GetDetailData(string id)
+        {
+            var dt = new DataTable();
+            using (var connection = DatabaseHelper.GetConnection())
+            {
+                connection.Open();
+                var cmd = connection.CreateCommand();
+                cmd.CommandText = @"
+                    SELECT 
+                        ChiTietPhieuNhap.SoLuong, 
+                        ChiTietPhieuNhap.DonGiaNhap, 
+                        ChiTietPhieuNhap.ThanhTien, 
+                        SanPham.MaSanPham, 
+                        SanPham.TenSanPham,
+                        SanPham.ThuongHieu,
+                        SanPham.XuatXu,
+                        PhieuNhapKho.TongTien
+                    FROM ChiTietPhieuNhap
+                    INNER JOIN SanPham ON ChiTietPhieuNhap.SanPhamId = SanPham.Id
+                    INNER JOIN PhieuNhapKho ON ChiTietPhieuNhap.PhieuNhapKhoId = PhieuNhapKho.Id
+                    WHERE ChiTietPhieuNhap.PhieuNhapKhoId = @id";
+                cmd.Parameters.AddWithValue("@id", id);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -147,20 +167,18 @@ namespace DAL
                 var cmd = connection.CreateCommand();
                 cmd.CommandText = @"
                     SELECT 
-                        Id, 
-                        TenPhieuNhapKho, 
-                        DiaChi, 
-                        DienThoai, 
-                        MaCode, 
-                        Email, 
-                        CASE GioiTinh
-                            WHEN 1 THEN 'Nam'
-                            WHEN 2 THEN 'Nữ'
-                            WHEN 3 THEN 'Khác'
-                            ELSE ''
-                        END AS GioiTinh 
-                        FROM KhachHang 
-                        WHERE TenKhachHang LIKE @kw";
+                        PhieuNhapKho.Id AS PhieuNhapId, 
+                        PhieuNhapKho.MaPhieu, 
+                        PhieuNhapKho.NgayNhap, 
+                        PhieuNhapKho.NhaCungCap, 
+                        PhieuNhapKho.NhanVienNhap, 
+                        PhieuNhapKho.TongTien,
+                        PhieuNhapKho.GhiChu,
+                        ChiTietPhieuNhap.Id AS ChiTietId
+                    FROM PhieuNhapKho
+                    INNER JOIN ChiTietPhieuNhap ON PhieuNhapKho.Id = ChiTietPhieuNhap.PhieuNhapKhoId
+                    INNER JOIN SanPham ON ChiTietPhieuNhap.SanPhamId = SanPham.Id
+                    WHERE MaPhieu LIKE @kw";
                 cmd.Parameters.AddWithValue("@kw", "%" + keyword + "%");
 
                 using (var reader = cmd.ExecuteReader())
@@ -169,22 +187,6 @@ namespace DAL
                 }
             }
             return dt;
-        }
-
-        public bool ExitMaCode(string maCode)
-        {
-            using (var connection = DatabaseHelper.GetConnection())
-            {
-                connection.Open();
-                using (var cmd = connection.CreateCommand())
-                {
-                    cmd.CommandText = "SELECT COUNT(1) FROM KhachHang WHERE MaCode = @MaCode";
-                    cmd.Parameters.AddWithValue("@MaCode", maCode);
-
-                    var count = Convert.ToInt32(cmd.ExecuteScalar());
-                    return count > 0;
-                }
-            }
         }
 
         public string GetMaCodeAuto()

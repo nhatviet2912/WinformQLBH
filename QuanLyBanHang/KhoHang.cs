@@ -1,7 +1,5 @@
 ﻿using BLL;
-using DAL;
 using System.Data;
-using System.Windows.Forms;
 
 namespace QuanLyBanHang
 {
@@ -12,7 +10,6 @@ namespace QuanLyBanHang
             InitializeComponent();
         }
 
-        BLL_SanPham sp = new BLL_SanPham();
         BLL_LoaiSanPham lsp = new BLL_LoaiSanPham();
         BLL_TonKho bLL_TonKho = new BLL_TonKho();
         void CloseHH()
@@ -25,6 +22,7 @@ namespace QuanLyBanHang
             textBox_XuatXu.Enabled = false;
             textBox_mota.Enabled = false;
             textBox_ThuongHieu.Enabled = false;
+            textBox_Soluong.Enabled = false;
 
             textBox_dvt.BackColor = Color.DarkGray;
             comboBox_hh_gb.BackColor = Color.DarkGray;
@@ -34,35 +32,13 @@ namespace QuanLyBanHang
             textBox_XuatXu.BackColor = Color.DarkGray;
             textBox_mota.BackColor = Color.DarkGray;
             textBox_ThuongHieu.BackColor = Color.DarkGray;
+            textBox_Soluong.BackColor = Color.DarkGray;
 
             if (combobox_LSP.Items.Count > 0)
             {
                 combobox_LSP.SelectedIndex = 0;
             }
         }
-        void OpenHH()
-        {
-            comboBox_hh_tensp.Enabled = true;
-            comboBox_hh_tensp.Enabled = true;
-            textBox_dvt.Enabled = true;
-            comboBox_hh_gb.Enabled = true;
-            combobox_LSP.Enabled = true;
-            textBox_XuatXu.Enabled = true;
-            textBox_mota.Enabled = true;
-            textBox_ThuongHieu.Enabled = true;
-            comboBox_hh_masp.Enabled = true;
-
-            textBox_dvt.BackColor = Color.White;
-            comboBox_hh_gb.BackColor = Color.White;
-            comboBox_hh_masp.BackColor = Color.White;
-            comboBox_hh_tensp.BackColor = Color.White;
-            combobox_LSP.BackColor = Color.White;
-            textBox_XuatXu.BackColor = Color.White;
-            textBox_mota.BackColor = Color.White;
-            textBox_ThuongHieu.BackColor = Color.White;
-
-        }
-
         void Setnull()
         {
             comboBox_hh_masp.Text = "";
@@ -120,7 +96,6 @@ namespace QuanLyBanHang
         private void button_hh_huybo_Click(object sender, EventArgs e)
         {
             Setnull();
-            //testbutton();
             CloseHH();
         }
 
@@ -128,16 +103,18 @@ namespace QuanLyBanHang
         {
             CloseHH();
             var row = dataGridView_hh.Rows[e.RowIndex];
+            var sl = row.Cells[8].Value.ToString();
             try
             {
-                comboBox_hh_masp.Text = row.Cells[1].Value.ToString();
-                comboBox_hh_tensp.Text = row.Cells[2].Value.ToString();
-                textBox_mota.Text = row.Cells[3].Value.ToString();
-                comboBox_hh_gb.Text = row.Cells[4].Value.ToString();
-                textBox_dvt.Text = row.Cells[5].Value.ToString();
+                comboBox_hh_masp.Text = row.Cells[0].Value.ToString();
+                comboBox_hh_tensp.Text = row.Cells[1].Value.ToString();
+                textBox_mota.Text = row.Cells[2].Value.ToString();
+                comboBox_hh_gb.Text = row.Cells[3].Value.ToString();
+                textBox_dvt.Text = row.Cells[4].Value.ToString();
                 textBox_XuatXu.Text = row.Cells[6].Value.ToString();
-                textBox_ThuongHieu.Text = row.Cells[7].Value.ToString();
-                combobox_LSP.SelectedValue = row.Cells["LoaiSanPhamId"].Value;
+                textBox_ThuongHieu.Text = row.Cells[5].Value.ToString();
+                combobox_LSP.SelectedValue = row.Cells[9].Value;
+                textBox_Soluong.Text = row.Cells[8].Value.ToString();
             }
             catch
             {
@@ -186,14 +163,13 @@ namespace QuanLyBanHang
 
         private void button_timkiem_Click(object sender, EventArgs e)
         {
-            dataGridView_hh.DataSource = sp.Search(comboBox_timkiem.Text);
+            dataGridView_hh.DataSource = bLL_TonKho.Search(comboBox_timkiem.Text);
             CloseHH();
         }
 
         private void HangHoa_Load(object sender, EventArgs e)
         {
             CloseHH();
-            //testbutton();
             Setnull();
             LoadDataLSP();
             Display();
