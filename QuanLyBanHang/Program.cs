@@ -1,4 +1,5 @@
 using DAL;
+using System.Text;
 
 namespace QuanLyBanHang
 {
@@ -12,6 +13,7 @@ namespace QuanLyBanHang
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             ApplicationConfiguration.Initialize();
             DatabaseHelper.InitDatabase();
             Application.Run(new Trangchinh());

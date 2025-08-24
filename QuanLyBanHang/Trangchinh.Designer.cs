@@ -50,10 +50,6 @@
             khoHàngToolStripMenuItem = new ToolStripMenuItem();
             nhânViênToolStripMenuItem = new ToolStripMenuItem();
             nhàCungCấpToolStripMenuItem = new ToolStripMenuItem();
-            báoCáoToolStripMenuItem = new ToolStripMenuItem();
-            doanhThuToolStripMenuItem = new ToolStripMenuItem();
-            hoạtĐộngBánHàngToolStripMenuItem = new ToolStripMenuItem();
-            giớiThiệuToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -83,13 +79,14 @@
             button_tcdoanhthu.FlatStyle = FlatStyle.Flat;
             button_tcdoanhthu.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_tcdoanhthu.ForeColor = Color.FromArgb(192, 192, 0);
+            button_tcdoanhthu.Image = Properties.Resources.money1;
             button_tcdoanhthu.ImageAlign = ContentAlignment.TopCenter;
             button_tcdoanhthu.Location = new Point(1037, 396);
             button_tcdoanhthu.Margin = new Padding(4, 5, 4, 5);
             button_tcdoanhthu.Name = "button_tcdoanhthu";
             button_tcdoanhthu.Size = new Size(264, 334);
             button_tcdoanhthu.TabIndex = 4;
-            button_tcdoanhthu.Text = "DOANH THU";
+            button_tcdoanhthu.Text = "BÁN HÀNG";
             button_tcdoanhthu.TextAlign = ContentAlignment.BottomCenter;
             button_tcdoanhthu.UseVisualStyleBackColor = false;
             button_tcdoanhthu.Click += doanhThuToolStripMenuItem_Click;
@@ -122,13 +119,14 @@
             button_tchanghoa.FlatStyle = FlatStyle.Flat;
             button_tchanghoa.Font = new Font("Microsoft Sans Serif", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_tchanghoa.ForeColor = Color.FromArgb(192, 192, 0);
+            button_tchanghoa.Image = Properties.Resources.shop_cart_add_icon11;
             button_tchanghoa.ImageAlign = ContentAlignment.TopCenter;
             button_tchanghoa.Location = new Point(741, 396);
             button_tchanghoa.Margin = new Padding(4, 5, 4, 5);
             button_tchanghoa.Name = "button_tchanghoa";
             button_tchanghoa.Size = new Size(264, 334);
             button_tchanghoa.TabIndex = 5;
-            button_tchanghoa.Text = "HÀNG HÓA";
+            button_tchanghoa.Text = "NHẬP HÀNG";
             button_tchanghoa.TextAlign = ContentAlignment.BottomCenter;
             button_tchanghoa.UseVisualStyleBackColor = false;
             button_tchanghoa.Click += hàngHóaToolStripMenuItem_Click;
@@ -177,6 +175,7 @@
             button_tcbanhang.Text = "KHO HÀNG";
             button_tcbanhang.TextAlign = ContentAlignment.BottomCenter;
             button_tcbanhang.UseVisualStyleBackColor = false;
+            button_tcbanhang.Click += button_tcbanhang_Click;
             // 
             // pictureBox1
             // 
@@ -191,7 +190,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { hệThốngToolStripMenuItem, giaoDịchToolStripMenuItem, quảnLýToolStripMenuItem, báoCáoToolStripMenuItem, giớiThiệuToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { hệThốngToolStripMenuItem, giaoDịchToolStripMenuItem, quảnLýToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1317, 31);
@@ -209,13 +208,13 @@
             // đăngXuấtToolStripMenuItem
             // 
             đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            đăngXuấtToolStripMenuItem.Size = new Size(179, 28);
+            đăngXuấtToolStripMenuItem.Size = new Size(224, 28);
             đăngXuấtToolStripMenuItem.Text = "Đăng Xuất";
             // 
             // thoátToolStripMenuItem
             // 
             thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
-            thoátToolStripMenuItem.Size = new Size(179, 28);
+            thoátToolStripMenuItem.Size = new Size(224, 28);
             thoátToolStripMenuItem.Text = "Thoát";
             thoátToolStripMenuItem.Click += thoátToolStripMenuItem_Click_1;
             // 
@@ -230,14 +229,14 @@
             // bánHàngToolStripMenuItem
             // 
             bánHàngToolStripMenuItem.Name = "bánHàngToolStripMenuItem";
-            bánHàngToolStripMenuItem.Size = new Size(224, 28);
+            bánHàngToolStripMenuItem.Size = new Size(185, 28);
             bánHàngToolStripMenuItem.Text = "Bán Hàng";
             bánHàngToolStripMenuItem.Click += bánHàngToolStripMenuItem_Click;
             // 
             // nhậpHàngToolStripMenuItem
             // 
             nhậpHàngToolStripMenuItem.Name = "nhậpHàngToolStripMenuItem";
-            nhậpHàngToolStripMenuItem.Size = new Size(224, 28);
+            nhậpHàngToolStripMenuItem.Size = new Size(185, 28);
             nhậpHàngToolStripMenuItem.Text = "Nhập Hàng";
             nhậpHàngToolStripMenuItem.Click += nhậpHàngToolStripMenuItem_Click_1;
             // 
@@ -252,71 +251,44 @@
             // loạiSảnPhẩmToolStripMenuItem
             // 
             loạiSảnPhẩmToolStripMenuItem.Name = "loạiSảnPhẩmToolStripMenuItem";
-            loạiSảnPhẩmToolStripMenuItem.Size = new Size(224, 28);
+            loạiSảnPhẩmToolStripMenuItem.Size = new Size(213, 28);
             loạiSảnPhẩmToolStripMenuItem.Text = "Loại Sản Phẩm";
             loạiSảnPhẩmToolStripMenuItem.Click += loạiSảnPhẩmToolStripMenuItem_Click;
             // 
             // sảnPhẩmToolStripMenuItem
             // 
             sảnPhẩmToolStripMenuItem.Name = "sảnPhẩmToolStripMenuItem";
-            sảnPhẩmToolStripMenuItem.Size = new Size(224, 28);
+            sảnPhẩmToolStripMenuItem.Size = new Size(213, 28);
             sảnPhẩmToolStripMenuItem.Text = "Hàng Hóa";
             sảnPhẩmToolStripMenuItem.Click += sảnPhẩmToolStripMenuItem_Click;
             // 
             // kháchHàngToolStripMenuItem
             // 
             kháchHàngToolStripMenuItem.Name = "kháchHàngToolStripMenuItem";
-            kháchHàngToolStripMenuItem.Size = new Size(224, 28);
+            kháchHàngToolStripMenuItem.Size = new Size(213, 28);
             kháchHàngToolStripMenuItem.Text = "Khách Hàng";
             kháchHàngToolStripMenuItem.Click += kháchHàngToolStripMenuItem_Click_1;
             // 
             // khoHàngToolStripMenuItem
             // 
             khoHàngToolStripMenuItem.Name = "khoHàngToolStripMenuItem";
-            khoHàngToolStripMenuItem.Size = new Size(224, 28);
+            khoHàngToolStripMenuItem.Size = new Size(213, 28);
             khoHàngToolStripMenuItem.Text = "Kho Hàng";
             khoHàngToolStripMenuItem.Click += khoHàngToolStripMenuItem_Click;
             // 
             // nhânViênToolStripMenuItem
             // 
             nhânViênToolStripMenuItem.Name = "nhânViênToolStripMenuItem";
-            nhânViênToolStripMenuItem.Size = new Size(224, 28);
+            nhânViênToolStripMenuItem.Size = new Size(213, 28);
             nhânViênToolStripMenuItem.Text = "Hóa Đơn Nhập";
             nhânViênToolStripMenuItem.Click += nhânViênToolStripMenuItem_Click;
             // 
             // nhàCungCấpToolStripMenuItem
             // 
             nhàCungCấpToolStripMenuItem.Name = "nhàCungCấpToolStripMenuItem";
-            nhàCungCấpToolStripMenuItem.Size = new Size(224, 28);
+            nhàCungCấpToolStripMenuItem.Size = new Size(213, 28);
             nhàCungCấpToolStripMenuItem.Text = "Hóa Đơn Bán";
             nhàCungCấpToolStripMenuItem.Click += nhàCungCấpToolStripMenuItem_Click;
-            // 
-            // báoCáoToolStripMenuItem
-            // 
-            báoCáoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { doanhThuToolStripMenuItem, hoạtĐộngBánHàngToolStripMenuItem });
-            báoCáoToolStripMenuItem.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            báoCáoToolStripMenuItem.Name = "báoCáoToolStripMenuItem";
-            báoCáoToolStripMenuItem.Size = new Size(89, 27);
-            báoCáoToolStripMenuItem.Text = "Báo Cáo";
-            // 
-            // doanhThuToolStripMenuItem
-            // 
-            doanhThuToolStripMenuItem.Name = "doanhThuToolStripMenuItem";
-            doanhThuToolStripMenuItem.Size = new Size(265, 28);
-            doanhThuToolStripMenuItem.Text = "Doanh Thu";
-            // 
-            // hoạtĐộngBánHàngToolStripMenuItem
-            // 
-            hoạtĐộngBánHàngToolStripMenuItem.Name = "hoạtĐộngBánHàngToolStripMenuItem";
-            hoạtĐộngBánHàngToolStripMenuItem.Size = new Size(265, 28);
-            hoạtĐộngBánHàngToolStripMenuItem.Text = "Hoạt Động Bán Hàng";
-            // 
-            // giớiThiệuToolStripMenuItem
-            // 
-            giớiThiệuToolStripMenuItem.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
-            giớiThiệuToolStripMenuItem.Name = "giớiThiệuToolStripMenuItem";
-            giớiThiệuToolStripMenuItem.Size = new Size(106, 27);
-            giớiThiệuToolStripMenuItem.Text = "Giới Thiệu";
             // 
             // Trangchinh
             // 
@@ -360,8 +332,6 @@
         private ToolStripMenuItem hệThốngToolStripMenuItem;
         private ToolStripMenuItem giaoDịchToolStripMenuItem;
         private ToolStripMenuItem quảnLýToolStripMenuItem;
-        private ToolStripMenuItem báoCáoToolStripMenuItem;
-        private ToolStripMenuItem giớiThiệuToolStripMenuItem;
         private ToolStripMenuItem đăngXuấtToolStripMenuItem;
         private ToolStripMenuItem thoátToolStripMenuItem;
         private ToolStripMenuItem bánHàngToolStripMenuItem;
@@ -370,8 +340,6 @@
         private ToolStripMenuItem kháchHàngToolStripMenuItem;
         private ToolStripMenuItem nhânViênToolStripMenuItem;
         private ToolStripMenuItem nhàCungCấpToolStripMenuItem;
-        private ToolStripMenuItem doanhThuToolStripMenuItem;
-        private ToolStripMenuItem hoạtĐộngBánHàngToolStripMenuItem;
         private ToolStripMenuItem loạiSảnPhẩmToolStripMenuItem;
         private ToolStripMenuItem khoHàngToolStripMenuItem;
     }

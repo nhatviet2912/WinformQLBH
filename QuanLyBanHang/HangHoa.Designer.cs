@@ -35,6 +35,15 @@
             button_hh_huybo = new Button();
             button_hh_sua = new Button();
             dataGridView_hh = new DataGridView();
+            MaSanPham = new DataGridViewTextBoxColumn();
+            TenSanPham = new DataGridViewTextBoxColumn();
+            TenLoai = new DataGridViewTextBoxColumn();
+            GiaBan = new DataGridViewTextBoxColumn();
+            ThuongHieu = new DataGridViewTextBoxColumn();
+            XuatXu = new DataGridViewTextBoxColumn();
+            DonViTinh = new DataGridViewTextBoxColumn();
+            MoTa = new DataGridViewTextBoxColumn();
+            NgayTao = new DataGridViewTextBoxColumn();
             label_hh_tsp = new Label();
             label_hh_dvt = new Label();
             label_HH_NSX = new Label();
@@ -47,7 +56,6 @@
             comboBox_timkiem = new ComboBox();
             label1 = new Label();
             button_timkiem = new Button();
-            pictureBox_bh = new PictureBox();
             button_hh_them = new Button();
             button_hh_xoa = new Button();
             label2 = new Label();
@@ -58,17 +66,8 @@
             textBox_ThuongHieu = new TextBox();
             textBox_XuatXu = new TextBox();
             combobox_LSP = new ComboBox();
-            MaSanPham = new DataGridViewTextBoxColumn();
-            TenSanPham = new DataGridViewTextBoxColumn();
-            TenLoai = new DataGridViewTextBoxColumn();
-            GiaBan = new DataGridViewTextBoxColumn();
-            ThuongHieu = new DataGridViewTextBoxColumn();
-            XuatXu = new DataGridViewTextBoxColumn();
-            DonViTinh = new DataGridViewTextBoxColumn();
-            MoTa = new DataGridViewTextBoxColumn();
-            NgayTao = new DataGridViewTextBoxColumn();
+            richTextBox1 = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView_hh).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_bh).BeginInit();
             SuspendLayout();
             // 
             // label_hh_masp
@@ -158,6 +157,87 @@
             dataGridView_hh.CellFormatting += dataGridView1_CellFormatting;
             dataGridView_hh.CellMouseClick += dataGridView_hh_CellMouseClick;
             dataGridView_hh.Click += button_hh_huybo_Click;
+            // 
+            // MaSanPham
+            // 
+            MaSanPham.DataPropertyName = "MaSanPham";
+            MaSanPham.HeaderText = "Mã Sản Phẩm";
+            MaSanPham.MinimumWidth = 6;
+            MaSanPham.Name = "MaSanPham";
+            MaSanPham.ReadOnly = true;
+            MaSanPham.Width = 200;
+            // 
+            // TenSanPham
+            // 
+            TenSanPham.DataPropertyName = "TenSanPham";
+            TenSanPham.HeaderText = "Tên Sản Phẩm";
+            TenSanPham.MinimumWidth = 6;
+            TenSanPham.Name = "TenSanPham";
+            TenSanPham.ReadOnly = true;
+            TenSanPham.Width = 200;
+            // 
+            // TenLoai
+            // 
+            TenLoai.DataPropertyName = "LoaiSanPhamTen";
+            TenLoai.HeaderText = "Tên Loại";
+            TenLoai.MinimumWidth = 6;
+            TenLoai.Name = "TenLoai";
+            TenLoai.ReadOnly = true;
+            TenLoai.Width = 200;
+            // 
+            // GiaBan
+            // 
+            GiaBan.DataPropertyName = "GiaBan";
+            GiaBan.HeaderText = "Giá Bán";
+            GiaBan.MinimumWidth = 6;
+            GiaBan.Name = "GiaBan";
+            GiaBan.ReadOnly = true;
+            GiaBan.Width = 200;
+            // 
+            // ThuongHieu
+            // 
+            ThuongHieu.DataPropertyName = "ThuongHieu";
+            ThuongHieu.HeaderText = "Thương Hiệu";
+            ThuongHieu.MinimumWidth = 6;
+            ThuongHieu.Name = "ThuongHieu";
+            ThuongHieu.ReadOnly = true;
+            ThuongHieu.Width = 200;
+            // 
+            // XuatXu
+            // 
+            XuatXu.DataPropertyName = "XuatXu";
+            XuatXu.HeaderText = "Xuất Xứ";
+            XuatXu.MinimumWidth = 6;
+            XuatXu.Name = "XuatXu";
+            XuatXu.ReadOnly = true;
+            XuatXu.Width = 200;
+            // 
+            // DonViTinh
+            // 
+            DonViTinh.DataPropertyName = "DonViTinh";
+            DonViTinh.HeaderText = "Đơn Vị Tính";
+            DonViTinh.MinimumWidth = 6;
+            DonViTinh.Name = "DonViTinh";
+            DonViTinh.ReadOnly = true;
+            DonViTinh.Width = 200;
+            // 
+            // MoTa
+            // 
+            MoTa.DataPropertyName = "MoTa";
+            MoTa.HeaderText = "Mô Tả";
+            MoTa.MinimumWidth = 6;
+            MoTa.Name = "MoTa";
+            MoTa.ReadOnly = true;
+            MoTa.Width = 200;
+            // 
+            // NgayTao
+            // 
+            NgayTao.DataPropertyName = "NgayTao";
+            NgayTao.HeaderText = "Ngày Tạo";
+            NgayTao.MinimumWidth = 6;
+            NgayTao.Name = "NgayTao";
+            NgayTao.ReadOnly = true;
+            NgayTao.Width = 200;
             // 
             // label_hh_tsp
             // 
@@ -349,18 +429,6 @@
             button_timkiem.UseVisualStyleBackColor = false;
             button_timkiem.Click += button_timkiem_Click;
             // 
-            // pictureBox_bh
-            // 
-            pictureBox_bh.BackColor = Color.Transparent;
-            pictureBox_bh.BorderStyle = BorderStyle.Fixed3D;
-            pictureBox_bh.Image = Properties.Resources.coollogo_com_289623578;
-            pictureBox_bh.Location = new Point(1345, 18);
-            pictureBox_bh.Margin = new Padding(4, 5, 4, 5);
-            pictureBox_bh.Name = "pictureBox_bh";
-            pictureBox_bh.Size = new Size(433, 270);
-            pictureBox_bh.TabIndex = 75;
-            pictureBox_bh.TabStop = false;
-            // 
             // button_hh_them
             // 
             button_hh_them.BackColor = Color.Transparent;
@@ -494,86 +562,17 @@
             combobox_LSP.Size = new Size(245, 37);
             combobox_LSP.TabIndex = 4;
             // 
-            // MaSanPham
+            // richTextBox1
             // 
-            MaSanPham.DataPropertyName = "MaSanPham";
-            MaSanPham.HeaderText = "Mã Sản Phẩm";
-            MaSanPham.MinimumWidth = 6;
-            MaSanPham.Name = "MaSanPham";
-            MaSanPham.ReadOnly = true;
-            MaSanPham.Width = 200;
-            // 
-            // TenSanPham
-            // 
-            TenSanPham.DataPropertyName = "TenSanPham";
-            TenSanPham.HeaderText = "Tên Sản Phẩm";
-            TenSanPham.MinimumWidth = 6;
-            TenSanPham.Name = "TenSanPham";
-            TenSanPham.ReadOnly = true;
-            TenSanPham.Width = 200;
-            // 
-            // TenLoai
-            // 
-            TenLoai.DataPropertyName = "LoaiSanPhamTen";
-            TenLoai.HeaderText = "Tên Loại";
-            TenLoai.MinimumWidth = 6;
-            TenLoai.Name = "TenLoai";
-            TenLoai.ReadOnly = true;
-            TenLoai.Width = 200;
-            // 
-            // GiaBan
-            // 
-            GiaBan.DataPropertyName = "GiaBan";
-            GiaBan.HeaderText = "Giá Bán";
-            GiaBan.MinimumWidth = 6;
-            GiaBan.Name = "GiaBan";
-            GiaBan.ReadOnly = true;
-            GiaBan.Width = 200;
-            // 
-            // ThuongHieu
-            // 
-            ThuongHieu.DataPropertyName = "ThuongHieu";
-            ThuongHieu.HeaderText = "Thương Hiệu";
-            ThuongHieu.MinimumWidth = 6;
-            ThuongHieu.Name = "ThuongHieu";
-            ThuongHieu.ReadOnly = true;
-            ThuongHieu.Width = 200;
-            // 
-            // XuatXu
-            // 
-            XuatXu.DataPropertyName = "XuatXu";
-            XuatXu.HeaderText = "Xuất Xứ";
-            XuatXu.MinimumWidth = 6;
-            XuatXu.Name = "XuatXu";
-            XuatXu.ReadOnly = true;
-            XuatXu.Width = 200;
-            // 
-            // DonViTinh
-            // 
-            DonViTinh.DataPropertyName = "DonViTinh";
-            DonViTinh.HeaderText = "Đơn Vị Tính";
-            DonViTinh.MinimumWidth = 6;
-            DonViTinh.Name = "DonViTinh";
-            DonViTinh.ReadOnly = true;
-            DonViTinh.Width = 200;
-            // 
-            // MoTa
-            // 
-            MoTa.DataPropertyName = "MoTa";
-            MoTa.HeaderText = "Mô Tả";
-            MoTa.MinimumWidth = 6;
-            MoTa.Name = "MoTa";
-            MoTa.ReadOnly = true;
-            MoTa.Width = 200;
-            // 
-            // NgayTao
-            // 
-            NgayTao.DataPropertyName = "NgayTao";
-            NgayTao.HeaderText = "Ngày Tạo";
-            NgayTao.MinimumWidth = 6;
-            NgayTao.Name = "NgayTao";
-            NgayTao.ReadOnly = true;
-            NgayTao.Width = 200;
+            richTextBox1.BackColor = Color.DarkGray;
+            richTextBox1.Font = new Font("Microsoft Sans Serif", 19.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            richTextBox1.ForeColor = Color.Brown;
+            richTextBox1.Location = new Point(1367, 60);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.RightToLeft = RightToLeft.No;
+            richTextBox1.Size = new Size(417, 187);
+            richTextBox1.TabIndex = 93;
+            richTextBox1.Text = "QUẢN LÝ HÀNG HÓA";
             // 
             // HangHoa
             // 
@@ -581,6 +580,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.gray;
             ClientSize = new Size(1796, 1055);
+            Controls.Add(richTextBox1);
             Controls.Add(combobox_LSP);
             Controls.Add(textBox_XuatXu);
             Controls.Add(textBox_ThuongHieu);
@@ -591,7 +591,6 @@
             Controls.Add(label2);
             Controls.Add(button_hh_xoa);
             Controls.Add(button_hh_them);
-            Controls.Add(pictureBox_bh);
             Controls.Add(button_timkiem);
             Controls.Add(label1);
             Controls.Add(comboBox_timkiem);
@@ -615,7 +614,6 @@
             Load += HangHoa_Load;
             Click += button_hh_huybo_Click;
             ((System.ComponentModel.ISupportInitialize)dataGridView_hh).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_bh).EndInit();
             ResumeLayout(false);
             PerformLayout();
 
@@ -639,7 +637,6 @@
         private System.Windows.Forms.ComboBox comboBox_timkiem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_timkiem;
-        private System.Windows.Forms.PictureBox pictureBox_bh;
         private System.Windows.Forms.Button button_hh_them;
         private System.Windows.Forms.Button button_hh_xoa;
         private Label label2;
@@ -659,5 +656,6 @@
         private DataGridViewTextBoxColumn DonViTinh;
         private DataGridViewTextBoxColumn MoTa;
         private DataGridViewTextBoxColumn NgayTao;
+        private RichTextBox richTextBox1;
     }
 }

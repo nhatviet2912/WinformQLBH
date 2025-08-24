@@ -193,6 +193,16 @@ namespace QuanLyBanHang.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap money1 {
+            get {
+                object obj = ResourceManager.GetObject("money1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap muahang {
             get {
                 object obj = ResourceManager.GetObject("muahang", resourceCulture);
@@ -226,6 +236,16 @@ namespace QuanLyBanHang.Properties {
         internal static System.Drawing.Bitmap shop_cart_add_icon1 {
             get {
                 object obj = ResourceManager.GetObject("shop-cart-add-icon1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap shop_cart_add_icon11 {
+            get {
+                object obj = ResourceManager.GetObject("shop-cart-add-icon11", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

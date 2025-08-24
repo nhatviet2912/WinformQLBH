@@ -1,6 +1,6 @@
 ﻿namespace QuanLyBanHang
 {
-    partial class ChiTietHoaDonNhap
+    partial class ChiTietHoaDonBan
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChiTietHoaDonNhap));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChiTietHoaDonBan));
             label_hh_masp = new Label();
             button_hh_huybo = new Button();
             dataGridView_hh = new DataGridView();
             MaSanPham = new DataGridViewTextBoxColumn();
             TenSanPham = new DataGridViewTextBoxColumn();
             SoLuong = new DataGridViewTextBoxColumn();
-            DonGiaNhap = new DataGridViewTextBoxColumn();
+            DonGia = new DataGridViewTextBoxColumn();
             ThanhTien = new DataGridViewTextBoxColumn();
             ThuongHieu = new DataGridViewTextBoxColumn();
             XuatXu = new DataGridViewTextBoxColumn();
@@ -107,7 +107,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView_hh.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView_hh.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_hh.Columns.AddRange(new DataGridViewColumn[] { MaSanPham, TenSanPham, SoLuong, DonGiaNhap, ThanhTien, ThuongHieu, XuatXu });
+            dataGridView_hh.Columns.AddRange(new DataGridViewColumn[] { MaSanPham, TenSanPham, SoLuong, DonGia, ThanhTien, ThuongHieu, XuatXu });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -149,20 +149,20 @@
             // SoLuong
             // 
             SoLuong.DataPropertyName = "SoLuong";
-            SoLuong.HeaderText = "Số Lượng Nhập";
+            SoLuong.HeaderText = "Số Lượng Bán";
             SoLuong.MinimumWidth = 6;
             SoLuong.Name = "SoLuong";
             SoLuong.ReadOnly = true;
             SoLuong.Width = 200;
             // 
-            // DonGiaNhap
+            // DonGia
             // 
-            DonGiaNhap.DataPropertyName = "DonGiaNhap";
-            DonGiaNhap.HeaderText = "Đơn Giá";
-            DonGiaNhap.MinimumWidth = 6;
-            DonGiaNhap.Name = "DonGiaNhap";
-            DonGiaNhap.ReadOnly = true;
-            DonGiaNhap.Width = 250;
+            DonGia.DataPropertyName = "DonGia";
+            DonGia.HeaderText = "Đơn Giá";
+            DonGia.MinimumWidth = 6;
+            DonGia.Name = "DonGia";
+            DonGia.ReadOnly = true;
+            DonGia.Width = 250;
             // 
             // ThanhTien
             // 
@@ -321,9 +321,9 @@
             label3.ForeColor = Color.Brown;
             label3.Location = new Point(12, 140);
             label3.Name = "label3";
-            label3.Size = new Size(193, 29);
+            label3.Size = new Size(176, 29);
             label3.TabIndex = 82;
-            label3.Text = "Số Lượng Nhập";
+            label3.Text = "Số Lượng Bán";
             // 
             // label5
             // 
@@ -419,11 +419,11 @@
             richTextBox1.Location = new Point(1302, 60);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.RightToLeft = RightToLeft.No;
-            richTextBox1.Size = new Size(478, 195);
+            richTextBox1.Size = new Size(478, 187);
             richTextBox1.TabIndex = 93;
-            richTextBox1.Text = "QUẢN LÝ CHI TIẾT HÓA ĐƠN NHẬP";
+            richTextBox1.Text = "QUẢN LÝ CHI TIẾT HÓA ĐƠN BÁN";
             // 
-            // ChiTietHoaDonNhap
+            // ChiTietHoaDonBan
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -451,8 +451,8 @@
             Controls.Add(dataGridView_hh);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 5, 4, 5);
-            Name = "ChiTietHoaDonNhap";
-            Text = "Chi Tiết Hóa Đơn Nhập";
+            Name = "ChiTietHoaDonBan";
+            Text = "Chi Tiết Hóa Đơn Bán";
             Load += HangHoa_Load;
             Click += button_hh_huybo_Click;
             ((System.ComponentModel.ISupportInitialize)dataGridView_hh).EndInit();
@@ -478,17 +478,17 @@
         private Label label5;
         private TextBox textBox_sl;
         private TextBox textBox_xx;
-        private DataGridViewTextBoxColumn MaSanPham;
-        private DataGridViewTextBoxColumn TenSanPham;
-        private DataGridViewTextBoxColumn SoLuong;
-        private DataGridViewTextBoxColumn DonGiaNhap;
-        private DataGridViewTextBoxColumn ThanhTien;
-        private DataGridViewTextBoxColumn ThuongHieu;
-        private DataGridViewTextBoxColumn XuatXu;
         private Label label1;
         private ComboBox combobox_thuonghieu;
         private Label label2;
         private ComboBox comboBox_tongtien;
+        private DataGridViewTextBoxColumn MaSanPham;
+        private DataGridViewTextBoxColumn TenSanPham;
+        private DataGridViewTextBoxColumn SoLuong;
+        private DataGridViewTextBoxColumn DonGia;
+        private DataGridViewTextBoxColumn ThanhTien;
+        private DataGridViewTextBoxColumn ThuongHieu;
+        private DataGridViewTextBoxColumn XuatXu;
         private RichTextBox richTextBox1;
     }
 }

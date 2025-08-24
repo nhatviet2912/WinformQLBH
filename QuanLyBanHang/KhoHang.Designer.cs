@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KhoHang));
             label_hh_masp = new Label();
             dataGridView_hh = new DataGridView();
@@ -53,7 +53,6 @@
             comboBox_timkiem = new ComboBox();
             label1 = new Label();
             button_timkiem = new Button();
-            pictureBox_bh = new PictureBox();
             label2 = new Label();
             textBox_mota = new TextBox();
             label3 = new Label();
@@ -62,11 +61,10 @@
             textBox_ThuongHieu = new TextBox();
             textBox_XuatXu = new TextBox();
             combobox_LSP = new ComboBox();
-            label6 = new Label();
             label7 = new Label();
             textBox_Soluong = new TextBox();
+            richTextBox1 = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView_hh).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_bh).BeginInit();
             SuspendLayout();
             // 
             // label_hh_masp
@@ -85,24 +83,24 @@
             // dataGridView_hh
             // 
             dataGridView_hh.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView_hh.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView_hh.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView_hh.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_hh.Columns.AddRange(new DataGridViewColumn[] { MaSanPham, TenSanPham, TenLoai, SoLuong, GiaBan, ThuongHieu, XuatXu, DonViTinh, MoTa });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dataGridView_hh.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView_hh.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView_hh.Location = new Point(-1, 415);
             dataGridView_hh.Margin = new Padding(4, 5, 4, 5);
             dataGridView_hh.Name = "dataGridView_hh";
@@ -365,18 +363,6 @@
             button_timkiem.UseVisualStyleBackColor = false;
             button_timkiem.Click += button_timkiem_Click;
             // 
-            // pictureBox_bh
-            // 
-            pictureBox_bh.BackColor = Color.Transparent;
-            pictureBox_bh.BorderStyle = BorderStyle.Fixed3D;
-            pictureBox_bh.Image = Properties.Resources.coollogo_com_289623578;
-            pictureBox_bh.Location = new Point(1345, 18);
-            pictureBox_bh.Margin = new Padding(4, 5, 4, 5);
-            pictureBox_bh.Name = "pictureBox_bh";
-            pictureBox_bh.Size = new Size(433, 270);
-            pictureBox_bh.TabIndex = 75;
-            pictureBox_bh.TabStop = false;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -466,15 +452,6 @@
             combobox_LSP.Size = new Size(245, 37);
             combobox_LSP.TabIndex = 4;
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(0, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(50, 20);
-            label6.TabIndex = 85;
-            label6.Text = "label6";
-            // 
             // label7
             // 
             label7.AutoSize = true;
@@ -497,15 +474,27 @@
             textBox_Soluong.Size = new Size(427, 34);
             textBox_Soluong.TabIndex = 87;
             // 
+            // richTextBox1
+            // 
+            richTextBox1.BackColor = Color.DarkGray;
+            richTextBox1.Font = new Font("Microsoft Sans Serif", 19.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            richTextBox1.ForeColor = Color.Brown;
+            richTextBox1.Location = new Point(1389, 55);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.RightToLeft = RightToLeft.No;
+            richTextBox1.Size = new Size(391, 206);
+            richTextBox1.TabIndex = 88;
+            richTextBox1.Text = "QUẢN LÝ KHO HÀNG";
+            // 
             // KhoHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.gray;
             ClientSize = new Size(1796, 1055);
+            Controls.Add(richTextBox1);
             Controls.Add(textBox_Soluong);
             Controls.Add(label7);
-            Controls.Add(label6);
             Controls.Add(combobox_LSP);
             Controls.Add(textBox_XuatXu);
             Controls.Add(textBox_ThuongHieu);
@@ -514,7 +503,6 @@
             Controls.Add(label3);
             Controls.Add(textBox_mota);
             Controls.Add(label2);
-            Controls.Add(pictureBox_bh);
             Controls.Add(button_timkiem);
             Controls.Add(label1);
             Controls.Add(comboBox_timkiem);
@@ -535,7 +523,6 @@
             Load += HangHoa_Load;
             Click += button_hh_huybo_Click;
             ((System.ComponentModel.ISupportInitialize)dataGridView_hh).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_bh).EndInit();
             ResumeLayout(false);
             PerformLayout();
 
@@ -556,7 +543,6 @@
         private System.Windows.Forms.ComboBox comboBox_timkiem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_timkiem;
-        private System.Windows.Forms.PictureBox pictureBox_bh;
         private Label label2;
         private TextBox textBox_mota;
         private Label label3;
@@ -574,8 +560,8 @@
         private DataGridViewTextBoxColumn XuatXu;
         private DataGridViewTextBoxColumn DonViTinh;
         private DataGridViewTextBoxColumn MoTa;
-        private Label label6;
         private Label label7;
         private TextBox textBox_Soluong;
+        private RichTextBox richTextBox1;
     }
 }

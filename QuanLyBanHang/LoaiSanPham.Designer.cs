@@ -48,9 +48,8 @@
             label1 = new Label();
             comboBox_timkiem = new ComboBox();
             button_timkiem = new Button();
-            pictureBox_bh = new PictureBox();
+            richTextBox1 = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView_ncc).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_bh).BeginInit();
             SuspendLayout();
             // 
             // label_ncc_dc
@@ -332,16 +331,17 @@
             button_timkiem.UseVisualStyleBackColor = false;
             button_timkiem.Click += button_timkiem_Click;
             // 
-            // pictureBox_bh
+            // richTextBox1
             // 
-            pictureBox_bh.BackColor = Color.Transparent;
-            pictureBox_bh.BorderStyle = BorderStyle.Fixed3D;
-            pictureBox_bh.Location = new Point(1265, 38);
-            pictureBox_bh.Margin = new Padding(4, 5, 4, 5);
-            pictureBox_bh.Name = "pictureBox_bh";
-            pictureBox_bh.Size = new Size(517, 270);
-            pictureBox_bh.TabIndex = 81;
-            pictureBox_bh.TabStop = false;
+            richTextBox1.BackColor = Color.DarkGray;
+            richTextBox1.Font = new Font("Microsoft Sans Serif", 19.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            richTextBox1.ForeColor = Color.Brown;
+            richTextBox1.Location = new Point(1315, 39);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.RightToLeft = RightToLeft.No;
+            richTextBox1.Size = new Size(478, 270);
+            richTextBox1.TabIndex = 82;
+            richTextBox1.Text = "QUẢN LÝ LOẠI SẢN PHẨM";
             // 
             // LoaiSanPham
             // 
@@ -349,7 +349,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.gray;
             ClientSize = new Size(1800, 1055);
-            Controls.Add(pictureBox_bh);
+            Controls.Add(richTextBox1);
             Controls.Add(label1);
             Controls.Add(comboBox_timkiem);
             Controls.Add(button_timkiem);
@@ -367,11 +367,10 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 5, 4, 5);
             Name = "LoaiSanPham";
-            Text = "NHÀ CUNG CẤP";
+            Text = "Loại Sản Phẩm";
             Load += NhaCungCap_Load;
             Click += button_ncc_huybo_Click;
             ((System.ComponentModel.ISupportInitialize)dataGridView_ncc).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_bh).EndInit();
             ResumeLayout(false);
             PerformLayout();
 
@@ -397,9 +396,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox_timkiem;
         private System.Windows.Forms.Button button_timkiem;
-        private System.Windows.Forms.PictureBox pictureBox_bh;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
+        private RichTextBox richTextBox1;
     }
 }

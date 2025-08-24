@@ -34,6 +34,12 @@
             label_hh_masp = new Label();
             button_hh_huybo = new Button();
             dataGridView_hh = new DataGridView();
+            MaPhieu = new DataGridViewTextBoxColumn();
+            NhaCungCap = new DataGridViewTextBoxColumn();
+            NhanVienNhap = new DataGridViewTextBoxColumn();
+            TongTien = new DataGridViewTextBoxColumn();
+            GhiChu = new DataGridViewTextBoxColumn();
+            NgayNhap = new DataGridViewTextBoxColumn();
             label_hh_tsp = new Label();
             label_hh_dvt = new Label();
             label_HH_NSX = new Label();
@@ -45,19 +51,12 @@
             comboBox_timkiem = new ComboBox();
             label1 = new Label();
             button_timkiem = new Button();
-            pictureBox_bh = new PictureBox();
             label3 = new Label();
             label5 = new Label();
             textBox_nhanvien = new TextBox();
             textBox_ghichu = new TextBox();
-            MaPhieu = new DataGridViewTextBoxColumn();
-            NhaCungCap = new DataGridViewTextBoxColumn();
-            NhanVienNhap = new DataGridViewTextBoxColumn();
-            TongTien = new DataGridViewTextBoxColumn();
-            GhiChu = new DataGridViewTextBoxColumn();
-            NgayNhap = new DataGridViewTextBoxColumn();
+            richTextBox1 = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView_hh).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_bh).BeginInit();
             SuspendLayout();
             // 
             // label_hh_masp
@@ -126,6 +125,60 @@
             dataGridView_hh.CellFormatting += dataGridView1_CellFormatting;
             dataGridView_hh.CellMouseClick += dataGridView_hh_CellMouseClick;
             dataGridView_hh.Click += button_hh_huybo_Click;
+            // 
+            // MaPhieu
+            // 
+            MaPhieu.DataPropertyName = "MaPhieu";
+            MaPhieu.HeaderText = "Mã Phiếu";
+            MaPhieu.MinimumWidth = 6;
+            MaPhieu.Name = "MaPhieu";
+            MaPhieu.ReadOnly = true;
+            MaPhieu.Width = 200;
+            // 
+            // NhaCungCap
+            // 
+            NhaCungCap.DataPropertyName = "NhaCungCap";
+            NhaCungCap.HeaderText = "Nhà Cung Cấp";
+            NhaCungCap.MinimumWidth = 6;
+            NhaCungCap.Name = "NhaCungCap";
+            NhaCungCap.ReadOnly = true;
+            NhaCungCap.Width = 300;
+            // 
+            // NhanVienNhap
+            // 
+            NhanVienNhap.DataPropertyName = "NhanVienNhap";
+            NhanVienNhap.HeaderText = "Nhân Viên Nhập";
+            NhanVienNhap.MinimumWidth = 6;
+            NhanVienNhap.Name = "NhanVienNhap";
+            NhanVienNhap.ReadOnly = true;
+            NhanVienNhap.Width = 300;
+            // 
+            // TongTien
+            // 
+            TongTien.DataPropertyName = "TongTien";
+            TongTien.HeaderText = "Tổng Tiền";
+            TongTien.MinimumWidth = 6;
+            TongTien.Name = "TongTien";
+            TongTien.ReadOnly = true;
+            TongTien.Width = 300;
+            // 
+            // GhiChu
+            // 
+            GhiChu.DataPropertyName = "GhiChu";
+            GhiChu.HeaderText = "Ghi Chú";
+            GhiChu.MinimumWidth = 6;
+            GhiChu.Name = "GhiChu";
+            GhiChu.ReadOnly = true;
+            GhiChu.Width = 300;
+            // 
+            // NgayNhap
+            // 
+            NgayNhap.DataPropertyName = "NgayNhap";
+            NgayNhap.HeaderText = "Ngày Nhập";
+            NgayNhap.MinimumWidth = 6;
+            NgayNhap.Name = "NgayNhap";
+            NgayNhap.ReadOnly = true;
+            NgayNhap.Width = 200;
             // 
             // label_hh_tsp
             // 
@@ -296,18 +349,6 @@
             button_timkiem.UseVisualStyleBackColor = false;
             button_timkiem.Click += button_timkiem_Click;
             // 
-            // pictureBox_bh
-            // 
-            pictureBox_bh.BackColor = Color.Transparent;
-            pictureBox_bh.BorderStyle = BorderStyle.Fixed3D;
-            pictureBox_bh.Image = Properties.Resources.coollogo_com_289623578;
-            pictureBox_bh.Location = new Point(1345, 18);
-            pictureBox_bh.Margin = new Padding(4, 5, 4, 5);
-            pictureBox_bh.Name = "pictureBox_bh";
-            pictureBox_bh.Size = new Size(433, 270);
-            pictureBox_bh.TabIndex = 75;
-            pictureBox_bh.TabStop = false;
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -352,59 +393,17 @@
             textBox_ghichu.Size = new Size(245, 34);
             textBox_ghichu.TabIndex = 6;
             // 
-            // MaPhieu
+            // richTextBox1
             // 
-            MaPhieu.DataPropertyName = "MaPhieu";
-            MaPhieu.HeaderText = "Mã Phiếu";
-            MaPhieu.MinimumWidth = 6;
-            MaPhieu.Name = "MaPhieu";
-            MaPhieu.ReadOnly = true;
-            MaPhieu.Width = 200;
-            // 
-            // NhaCungCap
-            // 
-            NhaCungCap.DataPropertyName = "NhaCungCap";
-            NhaCungCap.HeaderText = "Nhà Cung Cấp";
-            NhaCungCap.MinimumWidth = 6;
-            NhaCungCap.Name = "NhaCungCap";
-            NhaCungCap.ReadOnly = true;
-            NhaCungCap.Width = 300;
-            // 
-            // NhanVienNhap
-            // 
-            NhanVienNhap.DataPropertyName = "NhanVienNhap";
-            NhanVienNhap.HeaderText = "Nhân Viên Nhập";
-            NhanVienNhap.MinimumWidth = 6;
-            NhanVienNhap.Name = "NhanVienNhap";
-            NhanVienNhap.ReadOnly = true;
-            NhanVienNhap.Width = 300;
-            // 
-            // TongTien
-            // 
-            TongTien.DataPropertyName = "TongTien";
-            TongTien.HeaderText = "Tổng Tiền";
-            TongTien.MinimumWidth = 6;
-            TongTien.Name = "TongTien";
-            TongTien.ReadOnly = true;
-            TongTien.Width = 300;
-            // 
-            // GhiChu
-            // 
-            GhiChu.DataPropertyName = "GhiChu";
-            GhiChu.HeaderText = "Ghi Chú";
-            GhiChu.MinimumWidth = 6;
-            GhiChu.Name = "GhiChu";
-            GhiChu.ReadOnly = true;
-            GhiChu.Width = 300;
-            // 
-            // NgayNhap
-            // 
-            NgayNhap.DataPropertyName = "NgayNhap";
-            NgayNhap.HeaderText = "Ngày Nhập";
-            NgayNhap.MinimumWidth = 6;
-            NgayNhap.Name = "NgayNhap";
-            NgayNhap.ReadOnly = true;
-            NgayNhap.Width = 200;
+            richTextBox1.BackColor = Color.DarkGray;
+            richTextBox1.Font = new Font("Microsoft Sans Serif", 19.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            richTextBox1.ForeColor = Color.Brown;
+            richTextBox1.Location = new Point(1302, 68);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.RightToLeft = RightToLeft.No;
+            richTextBox1.Size = new Size(478, 187);
+            richTextBox1.TabIndex = 93;
+            richTextBox1.Text = "QUẢN LÝ HÓA ĐƠN NHẬP";
             // 
             // HoaDonNhap
             // 
@@ -412,11 +411,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.gray;
             ClientSize = new Size(1796, 1055);
+            Controls.Add(richTextBox1);
             Controls.Add(textBox_ghichu);
             Controls.Add(textBox_nhanvien);
             Controls.Add(label5);
             Controls.Add(label3);
-            Controls.Add(pictureBox_bh);
             Controls.Add(button_timkiem);
             Controls.Add(label1);
             Controls.Add(comboBox_timkiem);
@@ -438,7 +437,6 @@
             Load += HangHoa_Load;
             Click += button_hh_huybo_Click;
             ((System.ComponentModel.ISupportInitialize)dataGridView_hh).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_bh).EndInit();
             ResumeLayout(false);
             PerformLayout();
 
@@ -460,7 +458,6 @@
         private System.Windows.Forms.ComboBox comboBox_timkiem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_timkiem;
-        private System.Windows.Forms.PictureBox pictureBox_bh;
         private Label label3;
         private Label label5;
         private TextBox textBox_nhanvien;
@@ -471,5 +468,6 @@
         private DataGridViewTextBoxColumn TongTien;
         private DataGridViewTextBoxColumn GhiChu;
         private DataGridViewTextBoxColumn NgayNhap;
+        private RichTextBox richTextBox1;
     }
 }

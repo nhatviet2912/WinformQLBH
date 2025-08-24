@@ -1,6 +1,9 @@
 ﻿using BLL;
 using DAL;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System.Data;
+using System.Diagnostics;
 
 namespace QuanLyBanHang
 {
@@ -450,6 +453,7 @@ namespace QuanLyBanHang
                     phieuNhap.AddData(phieuNhapKhoEntity);
 
                     MessageBox.Show("Lưu hóa đơn thành công !");
+                    ExportHoaDonToPdf();
                     button_nh_thanhtoan.Enabled = false;
                     comboBox_nh_tenhang.Enabled = false;
                     textBox_nh_sl.Enabled = false;
@@ -476,6 +480,77 @@ namespace QuanLyBanHang
                 Trangchinh trangchinh = new Trangchinh();
                 trangchinh.ShowDialog();
                 return;
+            }
+        }
+
+        private void ExportHoaDonToPdf()
+        {
+            try
+            {
+                // Đường dẫn file PDF (Desktop)
+                string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string filePath = Path.Combine(folderPath, $"HoaDonNhap_{phieuNhapKhoEntity.MaPhieu}.pdf");
+
+                // Tạo document
+                Document doc = new Document(PageSize.A4, 20f, 20f, 20f, 20f);
+                PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
+                doc.Open();
+
+                // Font Unicode (để hiển thị tiếng Việt)
+                BaseFont bf = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                iTextSharp.text.Font fontTitle = new iTextSharp.text.Font(bf, 16, iTextSharp.text.Font.BOLD);
+                iTextSharp.text.Font fontNormal = new iTextSharp.text.Font(bf, 12, iTextSharp.text.Font.NORMAL);
+
+                // Tiêu đề
+                Paragraph title = new Paragraph("HÓA ĐƠN BÁN HÀNG", fontTitle);
+                title.Alignment = Element.ALIGN_CENTER;
+                doc.Add(title);
+                doc.Add(new Paragraph("\n"));
+
+                // Thông tin chung
+                doc.Add(new Paragraph($"Mã hóa đơn: {phieuNhapKhoEntity.MaPhieu}", fontNormal));
+                doc.Add(new Paragraph($"Ngày bán: {phieuNhapKhoEntity.NgayNhap:dd/MM/yyyy HH:mm}", fontNormal));
+                doc.Add(new Paragraph($"Nhà cung cấp: {phieuNhapKhoEntity.NhaCungCap}", fontNormal));
+                doc.Add(new Paragraph($"Nhân viên: {phieuNhapKhoEntity.NhanVienNhap}", fontNormal));
+                doc.Add(new Paragraph("\n"));
+
+                // Bảng chi tiết
+                PdfPTable table = new PdfPTable(4); // 4 cột
+                table.WidthPercentage = 100;
+                table.SetWidths(new float[] { 20f, 40f, 20f, 20f });
+
+                // Header
+                table.AddCell(new Phrase("Mã Sản Phẩm", fontNormal));
+                table.AddCell(new Phrase("Tên Sản Phẩm", fontNormal));
+                table.AddCell(new Phrase("Số lượng", fontNormal));
+                table.AddCell(new Phrase("Đơn giá", fontNormal));
+
+                foreach (var sp in chiTietPhieuNhaps)
+                {
+                    table.AddCell(new Phrase(sp.SanPhamId.ToString(), fontNormal));
+                    table.AddCell(new Phrase(comboBox_nh_masp.Text ?? "", fontNormal)); // nếu có tên SP
+                    table.AddCell(new Phrase(sp.SoLuong.ToString(), fontNormal));
+                    table.AddCell(new Phrase(sp.DonGiaNhap.ToString("N0"), fontNormal));
+                }
+
+                doc.Add(table);
+                doc.Add(new Paragraph("\n"));
+
+                // Tổng cộng
+                doc.Add(new Paragraph($"Tổng tiền: {phieuNhapKhoEntity.TongTien:N0} VND", fontTitle));
+
+                doc.Close();
+
+                MessageBox.Show($"Xuất PDF thành công!\nFile lưu tại: {filePath}");
+                Process.Start(new ProcessStartInfo()
+                {
+                    FileName = filePath,
+                    UseShellExecute = true  // bắt buộc để Windows chọn app mặc định (Adobe Reader/Edge)
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xuất PDF: " + ex.Message);
             }
         }
     }

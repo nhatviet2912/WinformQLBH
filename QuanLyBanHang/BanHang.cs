@@ -1,6 +1,9 @@
 ﻿using BLL;
-using DAL;
+using DTO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System.Data;
+using System.Diagnostics;
 
 namespace QuanLyBanHang
 {
@@ -11,27 +14,23 @@ namespace QuanLyBanHang
             InitializeComponent();
         }
         /// KHỞI TẠO CÁC THÔNG SỐ 
-        BLL_PhieuNhapKho phieuNhap = new BLL_PhieuNhapKho();
+        BLL_HoaDonBan hoaDonBan = new BLL_HoaDonBan();
         BLL_SanPham sanPham = new BLL_SanPham();
-        DTO_PhieuNhapKho phieuNhapKhoEntity = new DTO_PhieuNhapKho();
-        List<DTO_ChiTietPhieuNhap> chiTietPhieuNhaps = new List<DTO_ChiTietPhieuNhap>();
-        DTO_TonKho tonKho = new DTO_TonKho();
-        DataTable sp2 = new DataTable();
+        DTO_HoaDonBan hoaDonBanEntity = new DTO_HoaDonBan();
+        BLL_KhachHang khachHang = new BLL_KhachHang();
+        List<DTO_ChiTietHoaDonBan> chiTietHoaDonBans = new List<DTO_ChiTietHoaDonBan>();
         DataTable sp3 = new DataTable();
-        DataTable load = new DataTable();
         Int64 tongcong = 0;
         Int64 thanhtien;
         bool addnew;
         bool exit;
-        bool fail = false;
         /// ----------------------------------------------------------
         void Open()
         {
             comboBox_nh_tenhang.Enabled = true;
             textBox_nh_sl.Enabled = true;
             comboBox_nh_dgn.Enabled = true;
-            textBox_ncc.Enabled = true;
-            textbox_ghichu.Enabled = true;
+            comBoBox_kh.Enabled = true;
             textBox_tnv.Enabled = true;
             comboBox_nh_masp.Enabled = true;
         }
@@ -40,11 +39,9 @@ namespace QuanLyBanHang
             comboBox_nh_tenhang.Enabled = false;
             textBox_nh_sl.Enabled = false;
             comboBox_nh_dgn.Enabled = false;
-            textBox_ncc.Enabled = false;
-            textbox_ghichu.Enabled = false;
+            comBoBox_kh.Enabled = false;
             textBox_tnv.Enabled = false;
             comboBox_nh_masp.Enabled = false;
-            textBox_dvt.Enabled = false;
 
             button_nh_save.Enabled = false;
             button_ncc_huybo.Enabled = false;
@@ -74,12 +71,10 @@ namespace QuanLyBanHang
             comboBox_nh_tenhang.Text = "";
             textBox_nh_sl.Text = "";
             comboBox_nh_dgn.Text = "";
-            textBox_ncc.Text = "";
-            textbox_ghichu.Text = "";
             textBox_tnv.Text = "";
-            textBox_dvt.Text = "";
             textBox_nh_sl.Text = "1";
             comboBox_nh_dgn.Text = "0";
+            comBoBox_kh.SelectedValue = 0;
             comboBox_nh_masp.SelectedIndex = 0;
         }
 
@@ -87,7 +82,7 @@ namespace QuanLyBanHang
         {
             exit = false;
 
-            var maPhieuNhap = phieuNhap.GetMaCodeAuto();
+            var maPhieuNhap = hoaDonBan.GetMaCodeAuto();
             comboBox_nh_mahd.Text = maPhieuNhap;
 
             var sanPhamDropdown = sanPham.GetData()
@@ -101,18 +96,24 @@ namespace QuanLyBanHang
             comboBox_nh_masp.DataSource = sanPhamDropdown;
             comboBox_nh_masp.DisplayMember = "MaSanPham";
             comboBox_nh_masp.ValueMember = "Id";
+
+            var khachHangData = khachHang.GetData();
+
+            DataRow khachHangRow = khachHangData.NewRow();
+            khachHangRow["Id"] = 0;
+            khachHangRow["TenKhachHang"] = "Chọn khách hàng";
+            khachHangData.Rows.InsertAt(khachHangRow, 0);
+            comBoBox_kh.DataSource = khachHangData;
+            comBoBox_kh.DisplayMember = "TenKhachHang";
+            comBoBox_kh.ValueMember = "Id";
+
             // TẠO TRƯỜNG HIỂN THỊ LÊN DATAGRIDVIEW
             sp3.Columns.Add("Id");
             sp3.Columns.Add("MaSP");
             sp3.Columns.Add("TenSP");
-            sp3.Columns.Add("DonViTinh");
             sp3.Columns.Add("SoLuong");
-            sp3.Columns.Add("GiaNhap");
-            sp3.Columns.Add("ThanhTienNhap");
             sp3.Columns.Add("GiaBan");
-            sp3.Columns.Add("MaNhom");
-            sp3.Columns.Add("TenNhom");
-            sp3.Columns.Add("MaNCC");
+            sp3.Columns.Add("ThanhTien");
 
             dataGridView_nh.CellFormatting += dataGridView_nh_CellFormatting;
             addnew = false;
@@ -201,12 +202,10 @@ namespace QuanLyBanHang
             } 
             else
             {
-                textBox_ncc.Enabled = false;
-                textbox_ghichu.Enabled = false;
+                comBoBox_kh.Enabled = false;
                 textBox_tnv.Enabled = false;
 
                 comboBox_nh_tenhang.Text = "";
-                textBox_dvt.Text = "";
                 textBox_nh_sl.Text = "1";
                 comboBox_nh_dgn.Text = "0";
                 comboBox_nh_masp.SelectedIndex = 0;
@@ -275,8 +274,11 @@ namespace QuanLyBanHang
                 return;
             }
 
-
-            //-----------------------------------------------------------
+            if (comBoBox_kh.SelectedIndex == 0)
+            {
+                MessageBox.Show("Vui lòng chọn khách hàng !");
+                return;
+            }
 
             //-----------------------------------------------------------
             if (addnew == true)
@@ -285,56 +287,15 @@ namespace QuanLyBanHang
             }
             else
             {
-                //var isDuplicate = false;
-                //// SO SÁNH NẾU TRÙNG SẢN PHẨM THÌ CỘNG DỒN
-                //if (dataGridView_nh.Rows.Count >= 2)
-                //{
-                //    try
-                //    {
-                //        for (int i = 0; i <= dataGridView_nh.Rows.Count - 1; i++)
-                //        {
-                //            string maSpGrid = dataGridView_nh.Rows[i].Cells[1]?.Value?.ToString();
-                //            string maSpChon = comboBox_nh_masp.Text;
-
-                //            if (!string.IsNullOrEmpty(maSpGrid) && maSpGrid == maSpChon)
-                //            {
-                //                int slCu = Convert.ToInt32(dataGridView_nh.Rows[i].Cells[4].Value ?? 0);
-                //                int slMoi = Convert.ToInt32(textBox_nh_sl.Text);
-
-                //                dataGridView_nh.Rows[i].Cells[4].Value = slCu + slMoi;
-                //                int soLuong = int.Parse(dataGridView_nh.Rows[i].Cells[4].Value.ToString());
-                //                decimal donGia = decimal.Parse(dataGridView_nh.Rows[i].Cells[5].Value.ToString());
-
-                //                // Thành tiền = Số lượng * Đơn giá
-                //                decimal thanhTien = soLuong * donGia;
-
-                //                // Gán vào cột 6
-                //                dataGridView_nh.Rows[i].Cells[6].Value = thanhTien;
-
-                //                isDuplicate = true;
-                //            }
-                //        }
-                //    }
-                //    catch
-                //    {
-                //        MessageBox.Show("Lỗi thêm mới sản phẩm !");
-                //        fail = true;
-                //    }
-                //}
 
                 // HIỂN THỊ
                 try
                 {
                     thanhtien = int.Parse(textBox_nh_sl.Text) * int.Parse(comboBox_nh_dgn.Text);
-                    //if (!isDuplicate)
-                    //{
-
-                    //}
                     sp3.Rows.Add(
                             comboBox_nh_masp.SelectedValue,
                             comboBox_nh_masp.Text,
                             comboBox_nh_tenhang.Text,
-                            textBox_dvt.Text,
                             textBox_nh_sl.Text,
                             comboBox_nh_dgn.Text,
                             thanhtien);
@@ -344,7 +305,7 @@ namespace QuanLyBanHang
                     tongcong = 0;
                     for (int i = 0; i < dataGridView_nh.Rows.Count; i++)
                     {
-                        tongcong = tongcong + Convert.ToInt64(dataGridView_nh.Rows[i].Cells[6].Value);
+                        tongcong = tongcong + Convert.ToInt64(dataGridView_nh.Rows[i].Cells[4].Value);
                     }
                     textBox_nh_tongcong.Text = tongcong.ToString("N0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN")) + " VND";
                     testButton();
@@ -353,7 +314,6 @@ namespace QuanLyBanHang
                 catch
                 {
                     MessageBox.Show("Lỗi tính tiền sản phẩm !");
-                    fail = true;
                 }
             }
             
@@ -361,7 +321,7 @@ namespace QuanLyBanHang
 
         private void dataGridView_nh_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == 5 || e.ColumnIndex == 6)
+            if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
             {
                 if (e.Value != null && long.TryParse(e.Value.ToString(), out long val))
                 {
@@ -408,7 +368,6 @@ namespace QuanLyBanHang
             if (comboBox_nh_masp.SelectedItem is DataRowView row)
             {
                 comboBox_nh_tenhang.Text = row["TenSanPham"].ToString();
-                textBox_dvt.Text = row["DonViTinh"].ToString();
             }
         }
 
@@ -430,25 +389,27 @@ namespace QuanLyBanHang
                     for (int i = 0; i < dataGridView_nh.Rows.Count - 1; i++)
                     {
                         var row = dataGridView_nh.Rows[i];
-                        DTO_ChiTietPhieuNhap chiTietPhieuNhap = new DTO_ChiTietPhieuNhap()
+                        DTO_ChiTietHoaDonBan chiTietPhieuNhap = new DTO_ChiTietHoaDonBan()
                         {
                             SanPhamId = int.Parse(row.Cells[0].Value.ToString()!),
-                            SoLuong = int.Parse(row.Cells[4].Value.ToString()!),
-                            DonGiaNhap = int.Parse(row.Cells[5].Value.ToString()!)
+                            SoLuong = int.Parse(row.Cells[3].Value.ToString()!),
+                            DonGia = int.Parse(row.Cells[4].Value.ToString()!)
                         };
 
-                        chiTietPhieuNhaps.Add(chiTietPhieuNhap);
+                        chiTietHoaDonBans.Add(chiTietPhieuNhap);
                     }
 
-                    phieuNhapKhoEntity.MaPhieu = comboBox_nh_mahd.Text;
-                    phieuNhapKhoEntity.NgayNhap = DateTime.Now;
-                    phieuNhapKhoEntity.NhaCungCap = textBox_ncc.Text;
-                    phieuNhapKhoEntity.NhanVienNhap = textBox_tnv.Text;
-                    phieuNhapKhoEntity.TongTien = tongcong;
-                    phieuNhapKhoEntity.GhiChu = textbox_ghichu.Text;
-                    phieuNhapKhoEntity.chiTietPhieuNhaps = chiTietPhieuNhaps;
+                    hoaDonBanEntity.MaHoaDon = comboBox_nh_mahd.Text;
+                    hoaDonBanEntity.NgayBan = DateTime.Now;
+                    hoaDonBanEntity.KhachHangId = comBoBox_kh.SelectedValue?.ToString()!;
+                    hoaDonBanEntity.NhanVienBan = textBox_tnv.Text;
+                    hoaDonBanEntity.TongTien = tongcong;
+                    hoaDonBanEntity.chiTietHoaDonBans = chiTietHoaDonBans;
+                    hoaDonBan.AddData(hoaDonBanEntity);
 
                     MessageBox.Show("Lưu hóa đơn thành công !");
+
+                    ExportHoaDonToPdf();
                     button_nh_thanhtoan.Enabled = false;
                     comboBox_nh_tenhang.Enabled = false;
                     textBox_nh_sl.Enabled = false;
@@ -475,6 +436,77 @@ namespace QuanLyBanHang
                 Trangchinh trangchinh = new Trangchinh();
                 trangchinh.ShowDialog();
                 return;
+            }
+        }
+
+        private void ExportHoaDonToPdf()
+        {
+            try
+            {
+                // Đường dẫn file PDF (Desktop)
+                string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string filePath = Path.Combine(folderPath, $"HoaDonBan_{hoaDonBanEntity.MaHoaDon}.pdf");
+
+                // Tạo document
+                Document doc = new Document(PageSize.A4, 20f, 20f, 20f, 20f);
+                PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
+                doc.Open();
+
+                // Font Unicode (để hiển thị tiếng Việt)
+                BaseFont bf = BaseFont.CreateFont(@"C:\Windows\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                iTextSharp.text.Font fontTitle = new iTextSharp.text.Font(bf, 16, iTextSharp.text.Font.BOLD);
+                iTextSharp.text.Font fontNormal = new iTextSharp.text.Font(bf, 12, iTextSharp.text.Font.NORMAL);
+
+                // Tiêu đề
+                Paragraph title = new Paragraph("HÓA ĐƠN BÁN HÀNG", fontTitle);
+                title.Alignment = Element.ALIGN_CENTER;
+                doc.Add(title);
+                doc.Add(new Paragraph("\n"));
+
+                // Thông tin chung
+                doc.Add(new Paragraph($"Mã hóa đơn: {hoaDonBanEntity.MaHoaDon}", fontNormal));
+                doc.Add(new Paragraph($"Ngày bán: {hoaDonBanEntity.NgayBan:dd/MM/yyyy HH:mm}", fontNormal));
+                doc.Add(new Paragraph($"Khách hàng: {comBoBox_kh.Text}", fontNormal));
+                doc.Add(new Paragraph($"Nhân viên bán: {hoaDonBanEntity.NhanVienBan}", fontNormal));
+                doc.Add(new Paragraph("\n"));
+
+                // Bảng chi tiết
+                PdfPTable table = new PdfPTable(4); // 4 cột
+                table.WidthPercentage = 100;
+                table.SetWidths(new float[] { 20f, 40f, 20f, 20f });
+
+                // Header
+                table.AddCell(new Phrase("Mã Sản Phẩm", fontNormal));
+                table.AddCell(new Phrase("Tên Sản Phẩm", fontNormal));
+                table.AddCell(new Phrase("Số lượng", fontNormal));
+                table.AddCell(new Phrase("Đơn giá", fontNormal));
+
+                foreach (var sp in chiTietHoaDonBans)
+                {
+                    table.AddCell(new Phrase(sp.SanPhamId.ToString(), fontNormal));
+                    table.AddCell(new Phrase(comboBox_nh_masp.Text ?? "", fontNormal)); // nếu có tên SP
+                    table.AddCell(new Phrase(sp.SoLuong.ToString(), fontNormal));
+                    table.AddCell(new Phrase(sp.DonGia.ToString("N0"), fontNormal));
+                }
+
+                doc.Add(table);
+                doc.Add(new Paragraph("\n"));
+
+                // Tổng cộng
+                doc.Add(new Paragraph($"Tổng tiền: {hoaDonBanEntity.TongTien:N0} VND", fontTitle));
+
+                doc.Close();
+
+                MessageBox.Show($"Xuất PDF thành công!\nFile lưu tại: {filePath}");
+                Process.Start(new ProcessStartInfo()
+                {
+                    FileName = filePath,
+                    UseShellExecute = true  // bắt buộc để Windows chọn app mặc định (Adobe Reader/Edge)
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xuất PDF: " + ex.Message);
             }
         }
     }

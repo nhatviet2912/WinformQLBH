@@ -31,7 +31,6 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NhapHang));
-            pictureBox1 = new PictureBox();
             dateTimePicker_nh = new DateTimePicker();
             label_bh_nhanvien = new Label();
             label3 = new Label();
@@ -73,20 +72,9 @@
             textBox_tnv = new ComboBox();
             label4 = new Label();
             textBox_dvt = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            richTextBox1 = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView_nh).BeginInit();
             SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.BorderStyle = BorderStyle.Fixed3D;
-            pictureBox1.Location = new Point(1124, 14);
-            pictureBox1.Margin = new Padding(4, 5, 4, 5);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(659, 179);
-            pictureBox1.TabIndex = 57;
-            pictureBox1.TabStop = false;
             // 
             // dateTimePicker_nh
             // 
@@ -672,12 +660,25 @@
             textBox_dvt.Size = new Size(276, 41);
             textBox_dvt.TabIndex = 10;
             // 
+            // richTextBox1
+            // 
+            richTextBox1.BackColor = Color.DarkGray;
+            richTextBox1.Font = new Font("Microsoft Sans Serif", 19.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            richTextBox1.ForeColor = Color.Brown;
+            richTextBox1.Location = new Point(1127, 14);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.RightToLeft = RightToLeft.No;
+            richTextBox1.Size = new Size(656, 185);
+            richTextBox1.TabIndex = 86;
+            richTextBox1.Text = "QUẢN LÝ NHẬP HÀNG";
+            // 
             // NhapHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.gray;
             ClientSize = new Size(1800, 1055);
+            Controls.Add(richTextBox1);
             Controls.Add(textBox_dvt);
             Controls.Add(label4);
             Controls.Add(textBox_tnv);
@@ -694,7 +695,6 @@
             Controls.Add(textBox_nh_sl);
             Controls.Add(comboBox_nh_dgn);
             Controls.Add(comboBox_nh_tenhang);
-            Controls.Add(pictureBox1);
             Controls.Add(dateTimePicker_nh);
             Controls.Add(label_bh_nhanvien);
             Controls.Add(label3);
@@ -716,7 +716,6 @@
             Name = "NhapHang";
             Text = "NHẬP HÀNG";
             Load += NhapHang_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_nh).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -724,8 +723,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker_nh;
         private System.Windows.Forms.Label label_bh_nhanvien;
         private System.Windows.Forms.Label label3;
@@ -767,5 +764,6 @@
         private ComboBox textBox_tnv;
         private Label label4;
         private TextBox textBox_dvt;
+        private RichTextBox richTextBox1;
     }
 }

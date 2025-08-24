@@ -30,8 +30,7 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NhapHang));
-            pictureBox1 = new PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BanHang));
             dateTimePicker_nh = new DateTimePicker();
             label_bh_nhanvien = new Label();
             label3 = new Label();
@@ -55,38 +54,18 @@
             button_nh_save = new Button();
             button_ncc_huybo = new Button();
             button_ncc_tc = new Button();
-            label1 = new Label();
-            textbox_ghichu = new TextBox();
-            Column8 = new DataGridViewTextBoxColumn();
-            Column9 = new DataGridViewTextBoxColumn();
-            Columm8 = new DataGridViewTextBoxColumn();
-            Column7 = new DataGridViewTextBoxColumn();
-            Column6 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column4 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column1 = new DataGridViewTextBoxColumn();
             dataGridView_nh = new DataGridView();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewTextBoxColumn();
+            Column5 = new DataGridViewTextBoxColumn();
+            Column6 = new DataGridViewTextBoxColumn();
             label2 = new Label();
-            textBox_ncc = new TextBox();
             textBox_tnv = new ComboBox();
-            label4 = new Label();
-            textBox_dvt = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            comBoBox_kh = new ComboBox();
+            richTextBox1 = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView_nh).BeginInit();
             SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.BorderStyle = BorderStyle.Fixed3D;
-            pictureBox1.Location = new Point(1124, 14);
-            pictureBox1.Margin = new Padding(4, 5, 4, 5);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(659, 179);
-            pictureBox1.TabIndex = 57;
-            pictureBox1.TabStop = false;
             // 
             // dateTimePicker_nh
             // 
@@ -149,9 +128,9 @@
             label_tenkh.Location = new Point(17, 92);
             label_tenkh.Margin = new Padding(4, 0, 4, 0);
             label_tenkh.Name = "label_tenkh";
-            label_tenkh.Size = new Size(150, 20);
+            label_tenkh.Size = new Size(133, 20);
             label_tenkh.TabIndex = 37;
-            label_tenkh.Text = "NHÀ CUNG CẤP";
+            label_tenkh.Text = "KHÁCH HÀNG";
             // 
             // label_bh_mahoadon
             // 
@@ -162,9 +141,9 @@
             label_bh_mahoadon.Location = new Point(13, 19);
             label_bh_mahoadon.Margin = new Padding(4, 0, 4, 0);
             label_bh_mahoadon.Name = "label_bh_mahoadon";
-            label_bh_mahoadon.Size = new Size(155, 20);
+            label_bh_mahoadon.Size = new Size(128, 20);
             label_bh_mahoadon.TabIndex = 36;
-            label_bh_mahoadon.Text = "MÃ PHIẾU NHẬP";
+            label_bh_mahoadon.Text = "MÃ HÓA ĐƠN";
             // 
             // label_bh_dongia
             // 
@@ -175,9 +154,9 @@
             label_bh_dongia.Location = new Point(565, 242);
             label_bh_dongia.Margin = new Padding(4, 0, 4, 0);
             label_bh_dongia.Name = "label_bh_dongia";
-            label_bh_dongia.Size = new Size(143, 20);
+            label_bh_dongia.Size = new Size(84, 20);
             label_bh_dongia.TabIndex = 48;
-            label_bh_dongia.Text = "ĐƠN GIÁ NHẬP";
+            label_bh_dongia.Text = "GIÁ BÁN";
             // 
             // label_bh_soluong
             // 
@@ -220,7 +199,7 @@
             label_tongcong.FlatStyle = FlatStyle.Flat;
             label_tongcong.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold);
             label_tongcong.ForeColor = Color.Brown;
-            label_tongcong.Location = new Point(17, 445);
+            label_tongcong.Location = new Point(21, 362);
             label_tongcong.Margin = new Padding(4, 0, 4, 0);
             label_tongcong.Name = "label_tongcong";
             label_tongcong.Size = new Size(171, 29);
@@ -234,7 +213,7 @@
             textBox_nh_tongcong.Enabled = false;
             textBox_nh_tongcong.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBox_nh_tongcong.ForeColor = Color.FromArgb(0, 192, 0);
-            textBox_nh_tongcong.Location = new Point(232, 437);
+            textBox_nh_tongcong.Location = new Point(232, 347);
             textBox_nh_tongcong.Margin = new Padding(4, 5, 4, 5);
             textBox_nh_tongcong.Multiline = true;
             textBox_nh_tongcong.Name = "textBox_nh_tongcong";
@@ -460,128 +439,6 @@
             button_ncc_tc.UseVisualStyleBackColor = false;
             button_ncc_tc.Click += button_ncc_tc_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold);
-            label1.ForeColor = Color.Brown;
-            label1.Location = new Point(21, 319);
-            label1.Name = "label1";
-            label1.Size = new Size(88, 20);
-            label1.TabIndex = 80;
-            label1.Text = "GHI CHÚ";
-            // 
-            // textbox_ghichu
-            // 
-            textbox_ghichu.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textbox_ghichu.Location = new Point(232, 303);
-            textbox_ghichu.Margin = new Padding(4, 5, 4, 5);
-            textbox_ghichu.MaxLength = 0;
-            textbox_ghichu.Name = "textbox_ghichu";
-            textbox_ghichu.Size = new Size(276, 41);
-            textbox_ghichu.TabIndex = 9;
-            // 
-            // Column8
-            // 
-            Column8.DataPropertyName = "MaNCC";
-            Column8.HeaderText = "Mã nhà cung cấp";
-            Column8.MinimumWidth = 6;
-            Column8.Name = "Column8";
-            Column8.ReadOnly = true;
-            Column8.Visible = false;
-            Column8.Width = 125;
-            // 
-            // Column9
-            // 
-            Column9.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column9.DataPropertyName = "TenNhom";
-            Column9.HeaderText = "Tên nhóm";
-            Column9.MinimumWidth = 6;
-            Column9.Name = "Column9";
-            Column9.ReadOnly = true;
-            Column9.Visible = false;
-            // 
-            // Columm8
-            // 
-            Columm8.DataPropertyName = "MaNhom";
-            Columm8.HeaderText = "Mã nhóm";
-            Columm8.MinimumWidth = 6;
-            Columm8.Name = "Columm8";
-            Columm8.ReadOnly = true;
-            Columm8.Visible = false;
-            Columm8.Width = 125;
-            // 
-            // Column7
-            // 
-            Column7.DataPropertyName = "GiaBan";
-            Column7.HeaderText = "Đơn giá bán";
-            Column7.MinimumWidth = 6;
-            Column7.Name = "Column7";
-            Column7.ReadOnly = true;
-            Column7.Visible = false;
-            Column7.Width = 125;
-            // 
-            // Column6
-            // 
-            Column6.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column6.DataPropertyName = "ThanhTienNhap";
-            Column6.HeaderText = "Thành tiền nhập";
-            Column6.MaxInputLength = 100;
-            Column6.MinimumWidth = 6;
-            Column6.Name = "Column6";
-            Column6.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            Column5.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column5.DataPropertyName = "GiaNhap";
-            Column5.HeaderText = "Đơn giá nhập";
-            Column5.MaxInputLength = 100;
-            Column5.MinimumWidth = 6;
-            Column5.Name = "Column5";
-            Column5.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column4.DataPropertyName = "SoLuong";
-            Column4.HeaderText = "Số lượng";
-            Column4.MaxInputLength = 10;
-            Column4.MinimumWidth = 6;
-            Column4.Name = "Column4";
-            Column4.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column3.DataPropertyName = "DonViTinh";
-            Column3.HeaderText = "Đơn vị Tính";
-            Column3.MaxInputLength = 10;
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
-            Column3.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            Column2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column2.DataPropertyName = "TenSP";
-            Column2.HeaderText = "Tên sản phẩm";
-            Column2.MaxInputLength = 100;
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            Column2.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column1.DataPropertyName = "MaSP";
-            Column1.HeaderText = "Mã sản phẩm";
-            Column1.MaxInputLength = 10;
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            // 
             // dataGridView_nh
             // 
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -593,7 +450,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView_nh.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView_nh.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_nh.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6, Column7, Columm8, Column9, Column8 });
+            dataGridView_nh.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column4, Column5, Column6 });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -613,6 +470,56 @@
             dataGridView_nh.CellMouseClick += dataGridView_nh_CellMouseClick;
             dataGridView_nh.Click += dataGridView_nh_Click;
             // 
+            // Column1
+            // 
+            Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column1.DataPropertyName = "MaSP";
+            Column1.HeaderText = "Mã sản phẩm";
+            Column1.MaxInputLength = 10;
+            Column1.MinimumWidth = 6;
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            Column2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column2.DataPropertyName = "TenSP";
+            Column2.HeaderText = "Tên sản phẩm";
+            Column2.MaxInputLength = 100;
+            Column2.MinimumWidth = 6;
+            Column2.Name = "Column2";
+            Column2.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column4.DataPropertyName = "SoLuong";
+            Column4.HeaderText = "Số lượng";
+            Column4.MaxInputLength = 10;
+            Column4.MinimumWidth = 6;
+            Column4.Name = "Column4";
+            Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            Column5.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column5.DataPropertyName = "GiaBan";
+            Column5.HeaderText = "Đơn giá bán";
+            Column5.MaxInputLength = 100;
+            Column5.MinimumWidth = 6;
+            Column5.Name = "Column5";
+            Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            Column6.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column6.DataPropertyName = "ThanhTien";
+            Column6.HeaderText = "Thành tiền bán";
+            Column6.MaxInputLength = 100;
+            Column6.MinimumWidth = 6;
+            Column6.Name = "Column6";
+            Column6.ReadOnly = true;
+            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -624,16 +531,6 @@
             label2.Size = new Size(138, 20);
             label2.TabIndex = 82;
             label2.Text = "MÃ SẢN PHẨM";
-            // 
-            // textBox_ncc
-            // 
-            textBox_ncc.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox_ncc.Location = new Point(232, 86);
-            textBox_ncc.Margin = new Padding(4, 5, 4, 5);
-            textBox_ncc.MaxLength = 0;
-            textBox_ncc.Name = "textBox_ncc";
-            textBox_ncc.Size = new Size(276, 41);
-            textBox_ncc.TabIndex = 3;
             // 
             // textBox_tnv
             // 
@@ -650,41 +547,43 @@
             textBox_tnv.Size = new Size(276, 37);
             textBox_tnv.TabIndex = 4;
             // 
-            // label4
+            // comBoBox_kh
             // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Bold);
-            label4.ForeColor = Color.Brown;
-            label4.Location = new Point(565, 319);
-            label4.Name = "label4";
-            label4.Size = new Size(121, 20);
-            label4.TabIndex = 85;
-            label4.Text = "ĐƠN VỊ TÍNH";
+            comBoBox_kh.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comBoBox_kh.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comBoBox_kh.DropDownStyle = ComboBoxStyle.DropDownList;
+            comBoBox_kh.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            comBoBox_kh.FormattingEnabled = true;
+            comBoBox_kh.IntegralHeight = false;
+            comBoBox_kh.ItemHeight = 29;
+            comBoBox_kh.Location = new Point(232, 82);
+            comBoBox_kh.Margin = new Padding(4, 5, 4, 5);
+            comBoBox_kh.Name = "comBoBox_kh";
+            comBoBox_kh.Size = new Size(276, 37);
+            comBoBox_kh.TabIndex = 83;
             // 
-            // textBox_dvt
+            // richTextBox1
             // 
-            textBox_dvt.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textBox_dvt.Location = new Point(749, 303);
-            textBox_dvt.Margin = new Padding(4, 5, 4, 5);
-            textBox_dvt.MaxLength = 4;
-            textBox_dvt.Name = "textBox_dvt";
-            textBox_dvt.Size = new Size(276, 41);
-            textBox_dvt.TabIndex = 10;
+            richTextBox1.BackColor = Color.DarkGray;
+            richTextBox1.Font = new Font("Microsoft Sans Serif", 19.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            richTextBox1.ForeColor = Color.Brown;
+            richTextBox1.Location = new Point(1127, 14);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.RightToLeft = RightToLeft.No;
+            richTextBox1.Size = new Size(660, 187);
+            richTextBox1.TabIndex = 93;
+            richTextBox1.Text = "QUẢN LÝ BÁN HÀNG";
             // 
-            // NhapHang
+            // BanHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.gray;
             ClientSize = new Size(1800, 1055);
-            Controls.Add(textBox_dvt);
-            Controls.Add(label4);
+            Controls.Add(richTextBox1);
+            Controls.Add(comBoBox_kh);
             Controls.Add(textBox_tnv);
-            Controls.Add(textBox_ncc);
             Controls.Add(label2);
-            Controls.Add(textbox_ghichu);
-            Controls.Add(label1);
             Controls.Add(button_ncc_tc);
             Controls.Add(button_ncc_huybo);
             Controls.Add(button_nh_save);
@@ -694,7 +593,6 @@
             Controls.Add(textBox_nh_sl);
             Controls.Add(comboBox_nh_dgn);
             Controls.Add(comboBox_nh_tenhang);
-            Controls.Add(pictureBox1);
             Controls.Add(dateTimePicker_nh);
             Controls.Add(label_bh_nhanvien);
             Controls.Add(label3);
@@ -713,10 +611,9 @@
             ForeColor = Color.Brown;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 5, 4, 5);
-            Name = "NhapHang";
+            Name = "BanHang";
             Text = "NHẬP HÀNG";
             Load += NhapHang_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView_nh).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -724,8 +621,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker_nh;
         private System.Windows.Forms.Label label_bh_nhanvien;
         private System.Windows.Forms.Label label3;
@@ -749,23 +644,15 @@
         private System.Windows.Forms.Button button_nh_save;
         private Button button_ncc_huybo;
         private Button button_ncc_tc;
-        private Label label1;
-        private TextBox textbox_ghichu;
-        private DataGridViewTextBoxColumn Column8;
-        private DataGridViewTextBoxColumn Column9;
-        private DataGridViewTextBoxColumn Columm8;
-        private DataGridViewTextBoxColumn Column7;
-        private DataGridViewTextBoxColumn Column6;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column1;
         private DataGridView dataGridView_nh;
         private Label label2;
-        private TextBox textBox_ncc;
         private ComboBox textBox_tnv;
-        private Label label4;
-        private TextBox textBox_dvt;
+        private ComboBox comBoBox_kh;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Column5;
+        private DataGridViewTextBoxColumn Column6;
+        private RichTextBox richTextBox1;
     }
 }

@@ -49,20 +49,18 @@
             label_kh_tenkh = new Label();
             label_kh_sdt = new Label();
             label_kh_dc = new Label();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             button_kh_tc = new Button();
             label1 = new Label();
             comboBox_timkiem = new ComboBox();
             button_timkiem = new Button();
-            pictureBox_bh = new PictureBox();
             label2 = new Label();
             textBox_kh_makh = new TextBox();
             label_email = new Label();
             textBox_kh_emailkh = new TextBox();
             comboBox_kh_gioitinh = new ComboBox();
             label3 = new Label();
+            richTextBox1 = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView_kh).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_bh).BeginInit();
             SuspendLayout();
             // 
             // dataGridView_kh
@@ -403,18 +401,6 @@
             button_timkiem.UseVisualStyleBackColor = false;
             button_timkiem.Click += button_timkiem_Click;
             // 
-            // pictureBox_bh
-            // 
-            pictureBox_bh.BackColor = Color.Transparent;
-            pictureBox_bh.BorderStyle = BorderStyle.Fixed3D;
-            pictureBox_bh.Image = Properties.Resources.coollogo_com_87791472;
-            pictureBox_bh.Location = new Point(1273, 18);
-            pictureBox_bh.Margin = new Padding(4, 5, 4, 5);
-            pictureBox_bh.Name = "pictureBox_bh";
-            pictureBox_bh.Size = new Size(517, 270);
-            pictureBox_bh.TabIndex = 84;
-            pictureBox_bh.TabStop = false;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -482,19 +468,31 @@
             label3.TabIndex = 91;
             label3.Text = "Giới tính";
             // 
+            // richTextBox1
+            // 
+            richTextBox1.BackColor = Color.DarkGray;
+            richTextBox1.Font = new Font("Microsoft Sans Serif", 19.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            richTextBox1.ForeColor = Color.Brown;
+            richTextBox1.Location = new Point(1314, 23);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.RightToLeft = RightToLeft.No;
+            richTextBox1.Size = new Size(478, 187);
+            richTextBox1.TabIndex = 92;
+            richTextBox1.Text = "QUẢN LÝ KHÁCH HÀNG";
+            // 
             // KhachHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
             ClientSize = new Size(1800, 1055);
+            Controls.Add(richTextBox1);
             Controls.Add(label3);
             Controls.Add(comboBox_kh_gioitinh);
             Controls.Add(textBox_kh_emailkh);
             Controls.Add(label_email);
             Controls.Add(textBox_kh_makh);
             Controls.Add(label2);
-            Controls.Add(pictureBox_bh);
             Controls.Add(label1);
             Controls.Add(comboBox_timkiem);
             Controls.Add(button_timkiem);
@@ -518,7 +516,6 @@
             Load += KhachHang_Load;
             Click += button_kh_thoat_Click;
             ((System.ComponentModel.ISupportInitialize)dataGridView_kh).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox_bh).EndInit();
             ResumeLayout(false);
             PerformLayout();
 
@@ -538,12 +535,10 @@
         private System.Windows.Forms.Label label_kh_tenkh;
         private System.Windows.Forms.Label label_kh_sdt;
         private System.Windows.Forms.Label label_kh_dc;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button button_kh_tc;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox_timkiem;
         private System.Windows.Forms.Button button_timkiem;
-        private System.Windows.Forms.PictureBox pictureBox_bh;
         private Label label2;
         private TextBox textBox_kh_makh;
         private Label label_email;
@@ -556,5 +551,6 @@
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Email;
         private DataGridViewTextBoxColumn GioiTinh;
+        private RichTextBox richTextBox1;
     }
 }

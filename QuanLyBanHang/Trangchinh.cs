@@ -60,8 +60,8 @@ namespace QuanLyBanHang
         private void doanhThuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
-            //DoanhThu dt = new DoanhThu();
-            //dt.ShowDialog();
+            BanHang banHang = new BanHang();
+            banHang.ShowDialog();
         }
 
         private void nhậpHàngToolStripMenuItem_Click(object sender, EventArgs e)
@@ -74,8 +74,8 @@ namespace QuanLyBanHang
         private void hàngHóaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
-            //HangHoa hh = new HangHoa();
-            //hh.ShowDialog();
+            NhapHang nhapHang = new NhapHang();
+            nhapHang.ShowDialog();
         }
 
         private void kháchHàngToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -137,6 +137,13 @@ namespace QuanLyBanHang
             this.Hide();
             BanHang banHang = new BanHang();
             banHang.ShowDialog();
+        }
+
+        private void button_tcbanhang_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            KhoHang hang = new KhoHang();
+            hang.ShowDialog();
         }
     }
 }

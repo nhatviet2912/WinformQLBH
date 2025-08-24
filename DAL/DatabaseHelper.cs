@@ -89,6 +89,28 @@ namespace DAL
                         SanPhamId INT NOT NULL UNIQUE,
                         SoLuong INT NOT NULL DEFAULT 0,
                         FOREIGN KEY (SanPhamId) REFERENCES SanPham(Id)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS HoaDonBan (
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        MaHoaDon TEXT UNIQUE,        -- Mã hóa đơn
+                        NgayBan DATETIME NOT NULL,   -- Ngày bán
+                        KhachHangId INT,             -- FK đến khách hàng
+                        NhanVienBan TEXT,            -- Người bán
+                        TongTien DECIMAL(15,2),
+                        TrangThai INTEGER DEFAULT 1, -- 1 = Hoàn tất, 0 = Hủy
+                        FOREIGN KEY (KhachHangId) REFERENCES KhachHang(Id)
+                    );
+
+                    CREATE TABLE IF NOT EXISTS ChiTietHoaDonBan (
+                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        HoaDonBanId INT NOT NULL,    -- FK hóa đơn bán
+                        SanPhamId INT NOT NULL,      -- FK sản phẩm
+                        SoLuong INT NOT NULL,
+                        DonGia DECIMAL(15,2) NOT NULL,
+                        ThanhTien DECIMAL(18,2) GENERATED ALWAYS AS (SoLuong * DonGia) VIRTUAL,
+                        FOREIGN KEY (HoaDonBanId) REFERENCES HoaDonBan(Id),
+                        FOREIGN KEY (SanPhamId) REFERENCES SanPham(Id)
                     );";
                 tableCmd.ExecuteNonQuery();
             }
